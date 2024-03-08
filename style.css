@@ -1,0 +1,97 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: "Cairo", sans-serif;
+}
+
+button
+{
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow,transform;
+    background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+    padding: 0 32px;
+    border-radius: 6px;
+    color: #fff;
+    height: 48px;
+    font-size: 18px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+}
+button:hover
+{
+    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+    transform: translateY(-2px);
+}
+button:active
+{
+    box-shadow: inset 0px 3px 7px #3c4fe0;
+    transform: translateY(2px);
+}
+button svg
+{
+    margin: -13px;
+    margin-right: 0px;
+}
+nav
+{
+    width: 100%;
+    height: 60px;
+    border: 1px solid #e4e4e4;
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 1px 6px 3px #e4e4e45e;
+}
+nav img
+{
+    width: 60px;
+    height: 60px;
+}
+.graduate, .trip
+{
+    display: flex;
+    height: 43vh;
+    border-radius: 23px;
+    border: 3px solid #5468FF;
+    margin: 15px;
+}
+.trip img
+{
+    width: 50%;
+    object-fit:cover;
+    object-position: center;
+    border-radius: 20px 10px 10px 20px;
+}
+.graduate img
+{
+    width: 50%;
+    object-fit:cover;
+    object-position:left;
+    border-radius:  10px 20px 20px 10px ;
+}
+.graduate div, .trip div
+{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+@media only screen and (max-width: 600px) 
+{
+    .graduate h2, .trip h2
+    {
+        font-size: 19px;
+        text-align: center;
+    }
+    .trip img
+    {
+        object-position:60%;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate QR Code MAM</title>
+    <link rel="icon" href="../Assets/logoo.png" type="image/jpeg" sizes="16x16">
+    <link rel="stylesheet" href="qrstyle.css">
+    <!--CDN Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="qr">
+            <div id="qr"></div>
+        </div>
+        <form class="data" id="data" >
+            <label for="fn"><bdi>الإسم الرباعي (بالإنجليزية) :</bdi></label>
+            <input type="text" name="fn" id="fn" minlength="11" required>
+            <label for="sn"><bdi>الرقم القومي :</bdi></label>
+            <input type="text" name="sn" id="sn" size="14" pattern="[0-9]{14}" required>
+            <label for="un"><bdi>إسم الكلية او المعهد  (بالإنجليزية):</bdi></label>
+            <input type="text" name="un" id="un" required minlength="3">
+            <label for="phone"><bdi>رقم الهاتف للتواصل :</bdi></label>
+            <input type="text" name="phone" id="phone" required pattern="^01[0-2,5]\d{8}$">
+            <label for="free"><bdi>عدد المرافقين ال Free :</bdi></label>
+            <input type="text" value="2" id="free" readonly>
+            <label for="extra"><bdi>عدد المرافقين ال Extra : <u class="uline"> حد اقصى 3</u></bdi></label>
+            <input type="number" max="3" min="0" value="0" name="extra" id="extra" required>
+        </form>
+    </div>
+    <div class="btn">
+        <a class="btnsub" onclick="filterNID()"><button>QR إنشاء</button></a>
+        <a class="btnsub" id="download" href="" download="qr" onclick="pngdown()"><button>PNG تحميل</button></a>
+    </div>
+    <img class="logo" src="../Assets/logow.png">
+    
+    <!--CDN QR Library-->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

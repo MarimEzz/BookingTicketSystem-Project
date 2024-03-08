@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAM Graduate</title>
+    <link rel="icon" href="../Assets/logoo.png" type="image/jpeg" sizes="16x16">
+    <!--CDN Bootstrap Library-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--CDN Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="graduate.css">
+
+</head>
+<body>
+    <div id="bgcover"></div>
+    <nav>
+        <img src="../Assets/logow.png" alt="MAM logo">
+    </nav>
+    <a href="../index.html"><button class="back"><svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+      </svg></button></a>
+    <section class="popup" id="popup">
+        <img src="../Assets/Scan QRcode.gif" alt="qrcode">
+        <h1><bdi> تم تسجيل البيانات, يرجى دفع <u id="ft"></u> بأحد الطرق :</bdi>
+        <ul>
+            <bdi><li>دفع عن طريق فودافون كاش لرقم : 010</li></bdi>
+            <bdi><li>دفع عن طريق إتصالات كاش لرقم : 011</li></bdi>
+        </ul>
+        <bdi>لن يتم تأكيد الحجز إلا بإرسال صوره تحويل المبلغ وسيتم إستلام الكود الخاص بك بعد ذلك.</bdi>
+        </h1>
+        <a href="../index.html" ><button class="btnsub"><bdi>حسنا!</bdi></button></a>
+    </section>
+    <form class="graduate" id="graduate" name="graduateForm" method="post" action="">
+        <fieldset>
+            <legend><bdi>حجز تذكرة حفل التخرج :</bdi></legend>
+            <div class="formcontainer">
+                <img alt="" src="../Assets/g.jfif">
+                <div class="inputfield">
+                    <label for="fn"><bdi>الإسم الرباعي (بالإنجليزية) :</bdi></label>
+                    <input type="text" name="fn" id="fn" minlength="11" required>
+                    <label for="sn"><bdi>الرقم القومي :</bdi></label>
+                    <input type="text" name="sn" id="sn" size="14" pattern="[0-9]{14}" required>
+                    <label for="un"><bdi>إسم الكلية او المعهد  (بالإنجليزية):</bdi></label>
+                    <input type="text" name="un" id="un" required minlength="3">
+                    <label for="phone"><bdi>رقم الهاتف للتواصل :</bdi></label>
+                    <input type="text" name="phone" id="phone" required pattern="^01[0-2,5]\d{8}$">
+                    <label for="free"><bdi>عدد المرافقين ال Free :</bdi></label>
+                    <div class="freeprice">
+                        <input type="text" value="2" id="free" accesskey="f" readonly>
+                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100" readonly> 
+                    </div>
+                    <label for="extra"><bdi>عدد المرافقين ال Extra : <u class="uline"> حد اقصى 3</u></bdi></label>
+                    <div class="extraprice">
+                        <input type="number" max="3" min="0" value="" name="extra" id="extra" accesskey="x" required>
+                        <!-- use this after log in admin <h2 class="price"><span id="extraprice" contenteditable="false">100</span> EGP</h2>-->
+                        <span>EGP</span><input type="text" class="notinput" id="extraprice" value="100" readonly>
+                    </div>
+                    <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
+                    <input type="submit" class="btnsub" value="Submit">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    
+    <script src="graduate.js"></script>
+    <!--CDN Bootstrap Library-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
