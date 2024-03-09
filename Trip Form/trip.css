@@ -78,10 +78,6 @@ input:focus
     border: 2px solid #5468FF;
     outline: none;
 }
-#free
-{
-    cursor: not-allowed;
-}
 #free, #extra
 {
     width: 85%;

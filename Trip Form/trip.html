@@ -44,8 +44,8 @@
                     <input type="text" name="phone" id="phone" required pattern="^01[0-2,5]\d{8}$">
                     <label for="free"><bdi>عدد التذاكر :</bdi></label>
                     <div class="freeprice">
-                        <input type="text" value="2" id="free" accesskey="f">
-                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100"> 
+                        <input type="number" min="0" value="" id="free" accesskey="f">
+                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100" readonly> 
                     </div>
                     <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
                     <input type="submit" class="btnsub" value="Submit">

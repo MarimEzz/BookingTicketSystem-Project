@@ -10,7 +10,7 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
-
+// password matched
 const pass = document.getElementById("pass");
 const match = document.getElementById("match");
 document.addEventListener('keydown', function(event) {
@@ -24,13 +24,71 @@ else
     document.getElementById("matched").style.display="none";
 }
 })
+////////////////
 
-var signinform = document.getElementById("sign-in-form");
-var signupform = document.getElementById("sign-up-form");
+// Function to handle sign-in form submission
+document.getElementById("sign-in-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  
+  const formData = new FormData(event.target);
+  const username = formData.get("username");
+  const password = formData.get("password");
 
-document.getElementById("btnin").addEventListener("click", function () {
-    signinform.submit();
+  try {
+        //Endpoints here
+      const response = await fetch("login", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+
+      // Check if login was successful
+      if (response.ok) {
+          localStorage.setItem("token", data.token);
+          window.location.href="../index.html";
+      } else {
+          // Handle failed login (display error message, etc.)
+          console.error("Login failed:", data.message);
+      }
+  } catch (error) {
+      console.error("Error during login:", error);
+  }
 });
-document.getElementById("btnup").addEventListener("click", function () {
-    signupform.submit();
-  });
+
+// Function to handle sign-up form submission
+document.getElementById("sign-up-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const username = formData.get("username");
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  try {
+    //Endpoints here
+      const response = await fetch("/register", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username, email, password })
+      });
+
+      const data = await response.json();
+
+      // Check if registration was successful
+      if (response.ok) {
+          localStorage.setItem("token", data.token);
+          window.location.href="../index.html";
+        } else {
+          // Handle failed registration (display error message, etc.)
+          console.error("Registration failed:", data.message);
+      }
+  } catch (error) {
+      console.error("Error during registration:", error);
+  }
+});

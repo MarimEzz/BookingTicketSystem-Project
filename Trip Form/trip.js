@@ -2,11 +2,9 @@
 var fulln = document.getElementById("fn");
 var natiomalid = document.getElementById("sn");
 var phone = document.getElementById("phone");
-var ex = document.getElementById("extra");
 fulln.setCustomValidity("Please Enter Your Full Name.");
 natiomalid.setCustomValidity("Please Enter Your National ID (14 digits).");
 phone.setCustomValidity("Enter Your Phone Number (11 digits), Support 010, 011, 012, and 015.");
-ex.setCustomValidity("Maximum 3 only.");
 fulln.addEventListener("input", function() {
     fulln.setCustomValidity("");
   });
@@ -16,31 +14,31 @@ fulln.addEventListener("input", function() {
   phone.addEventListener("input", function() {
     phone.setCustomValidity("");
   });
-  ex.addEventListener("input", function() {
-    ex.setCustomValidity("");
-  });
+
 /////////////////////////////////////////////////
 
+const inputf = document.getElementById("free");
 const fpricetrip = document.getElementById("freeprice");
 const total = document.getElementById("total");
 var poptotal = document.getElementById("ft");
 
 // Update prices from localStorage if available
+
 if (localStorage.getItem('fpricetrip')) {
     fpricetrip.value = localStorage.getItem('fpricetrip');
 }
 
 // Initialize total with the value of fprice
-var totall=+fpricetrip.value * +inputx.value;
+var totall=+fpricetrip.value * +inputf.value;
 total.innerHTML = totall;
 
 // Update total when inputx value changes
-inputx.addEventListener("change", dynamicExtra);
+inputf.addEventListener("change", dynamicExtra);
 
 function dynamicExtra() {
-    let xval = inputx.value;
+    let xval = inputf.value;
     let fval = fpricetrip.value;
-    total.innerHTML = +fval + price * xval;
+    total.innerHTML = +fval * xval;
     poptotal.innerHTML=total.innerHTML;
 }
 
@@ -51,7 +49,7 @@ document.addEventListener('keydown', function(event) {
         if (newValue !== null) {
             fpricetrip.value = newValue;
             localStorage.setItem('fpricetrip', newValue);
-            total.innerHTML = +fpricetrip.value + xpricetrip.value * inputx.value;
+            total.innerHTML = +fpricetrip.value * inputf.value;
             poptotal.innerHTML=total.innerHTML;
         }
     }
