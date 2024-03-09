@@ -21,23 +21,17 @@ fulln.addEventListener("input", function() {
   });
 /////////////////////////////////////////////////
 
-const inputx = document.getElementById("extra");
-const xpricetrip = document.getElementById("extraprice");
 const fpricetrip = document.getElementById("freeprice");
 const total = document.getElementById("total");
 var poptotal = document.getElementById("ft");
 
 // Update prices from localStorage if available
-if (localStorage.getItem('expricetrip')) {
-    xpricetrip.value = localStorage.getItem('expricetrip');
-}
-
 if (localStorage.getItem('fpricetrip')) {
     fpricetrip.value = localStorage.getItem('fpricetrip');
 }
 
 // Initialize total with the value of fprice
-var totall=+fpricetrip.value + +xpricetrip.value * +inputx.value;
+var totall=+fpricetrip.value * +inputx.value;
 total.innerHTML = totall;
 
 // Update total when inputx value changes
@@ -46,23 +40,10 @@ inputx.addEventListener("change", dynamicExtra);
 function dynamicExtra() {
     let xval = inputx.value;
     let fval = fpricetrip.value;
-    let price = xpricetrip.value;
     total.innerHTML = +fval + price * xval;
     poptotal.innerHTML=total.innerHTML;
 }
 
-// Admin change price for extra ticket
-document.addEventListener('keydown', function(event) {
-    if (event.altKey && event.key === 'x') {
-        const newValue = prompt('Enter Price Of Extra ticket:');
-        if (newValue !== null) {
-            xpricetrip.value = newValue;
-            localStorage.setItem('expricetrip', newValue);
-            total.innerHTML = +fpricetrip.value + xpricetrip.value * inputx.value;
-            poptotal.innerHTML=total.innerHTML;
-        }
-    }
-});
 // Admin change price for free ticket
 document.addEventListener('keydown', function(event) {
     if (event.altKey && event.key === 'f') {
