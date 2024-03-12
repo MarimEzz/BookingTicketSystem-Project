@@ -26,6 +26,17 @@ function controlbtn()
 
     document.getElementById("control").style.display="flex";
 }
+
+const buttons = document.querySelectorAll('.btnaside');
+buttons.forEach(button=> {
+  button.addEventListener('click', function(){
+    buttons.forEach(btn=>{
+      btn.classList.remove('active');
+
+    });
+    this.classList.add('active');
+  });
+});
 //////////////////////////////////
 
 function triprowcounter()

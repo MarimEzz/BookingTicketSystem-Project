@@ -66,6 +66,11 @@ aside button:active{
     box-shadow: inset 0px 3px 7px #d6d6e7;
     transform: translateY(2px);
 }
+aside .active
+{
+    background-color: #3b52ff;
+    color: #fff;
+}
 #control input[type="number"] {
     outline: none;    
     color: rgb(36, 35, 42);
