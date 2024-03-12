@@ -54,7 +54,8 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
-///////////////////////////////////////
+//////////////////////////////////////
+/*
 // Function to check if national ID value is stored before
 function isNationalIdStored(nationalId) 
 {
@@ -100,10 +101,32 @@ document.getElementById("trip").addEventListener("submit", function(event)
 //localStorage.removeItem('key'); //to delete a specific ID
 console.log("National ID already exists:", nationalIdsrrip);
 
-//////////////////////////////////////////
+*/
+/////////////////////////////////////////
 
 function popup()
 {
     document.getElementById("popup").style.top="70%";
     document.getElementById("bgcover").style.display="block";
 }
+///////////////////////////
+document.getElementById("trip").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const tripformdata = new FormData(this);
+  //action attribute value "EndPoint" >>>> /submit
+  fetch("/submit",{
+    method: "POST",
+    body:tripformdata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});

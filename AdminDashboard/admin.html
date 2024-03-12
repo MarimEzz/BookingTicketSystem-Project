@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" href="../Assets/logoo.png" type="image/jpeg" sizes="16x16">
+    <!--CDN Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <img alt="logo" src="../Assets/logo.jpeg">
+            <div class="asidebtn">
+                <a><button class="trip" id="btn-trip" onclick="tripbtn()">بيانات الرحلات</button></a>
+                <a><button class="graduate" id="btn-graduate" onclick="graduatebtn()">بيانات التخرج</button></a>
+                <a><button class="control" id="btn-control" onclick="controlbtn()">لوحة التحكم</button></a>
+                <a href="../QR/qr.html"><button class="Generte"><bdi>إنشاء QR</bdi></button></a>
+            </div>
+        </aside>
+        <div class="admin-body">
+            <img src="../Assets/logow.png" alt="logo" id="imglogo">
+            <div id="trip-data">
+                <h2>بيانات الرحلات</h2>
+                <table id="tripdata">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>الإسم الرباعي</th>
+                            <th>الرقم القومي</th>
+                            <th>رقم الهاتف</th>
+                            <th>عدد التذاكر</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--foreach-->
+                        <tr>
+                            <td></td>
+                            <td>Marim ezzaldin</td>
+                            <td>99999999999999</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Marim ezzaldin</td>
+                            <td>99999999999999</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="graduate-data">
+                <h2>بيانات التخرج </h2>
+                <table id="graduatedata">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>الإسم الرباعي</th>
+                            <th>الرقم القومي</th>
+                            <th>إسم الكلية</th>
+                            <th>رقم الهاتف</th>
+                            <th><bdi>عدد التذاكر Free </bdi></th>
+                            <th><bdi>عدد التذاكر Extra </bdi></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--foreach-->
+                        <tr>
+                            <td></td>
+                            <td>Marim ezzaldin</td>
+                            <td>99999999999999</td>
+                            <td>Modern</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>6</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr><tr>
+                            <td></td>
+                            <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
+                            <td>99999999999999</td>
+                            <td>MAM</td>
+                            <td>01011111111</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><button class="del-btn">حذف</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="control">
+                <form action="" method="post" name="trip-control" id="tripcontrol">
+                    <div class="inline-input">
+                        <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
+                        <input type="number" min="0" value="" name="trip-price" id="trip-price">
+                    </div>
+                    <input type="submit" class="btnsub" value="تأكيد">
+                </form>
+                <form action="" method="post" name="graduatefree-control" id="graduatefcontrol">
+                    <div class="inline-input">
+                        <label for="gfree-price"><bdi>سعر تذكرة التخرج Free :</bdi></label>
+                        <input type="number" min="0" value="" name="gfree-price" id="gfree-price">
+                    </div>
+                    <input type="submit" class="btnsub" value="تأكيد">
+                </form>
+                <form action="" method="post" name="graduatextra-control" id="graduatexcontrol">
+                    <div class="inline-input">
+                        <label for="gextra-price"><bdi>سعر تذكرة التخرج Extra :</bdi></label>
+                        <input type="number" min="0" value="" name="gextra-price" id="gextra-price">
+                    </div>
+                    <input type="submit" class="btnsub" value="تأكيد">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

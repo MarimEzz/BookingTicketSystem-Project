@@ -24,7 +24,51 @@ else
     document.getElementById("matched").style.display="none";
 }
 })
-////////////////
+////////////////////////////
+
+document.getElementById("sign-in-form").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const signinformdata = new FormData(this);
+  //action attribute value /submit
+  fetch("/submit",{
+    method: "POST",
+    body:signinformdata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});
+///////////////////////////
+
+document.getElementById("sign-up-form").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const signupformdata = new FormData(this);
+  //action attribute value /submit
+  fetch("/submit",{
+    method: "POST",
+    body:signupformdata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});
+///////////////////////////
 
 // Function to handle sign-in form submission
 document.getElementById("sign-in-form").addEventListener("submit", async (event) => {
@@ -35,7 +79,7 @@ document.getElementById("sign-in-form").addEventListener("submit", async (event)
   const password = formData.get("password");
 
   try {
-        //Endpoints here
+  //action attribute value "EndPoint" >>>> /login
       const response = await fetch("login", {
           method: "POST",
           headers: {
@@ -69,7 +113,7 @@ document.getElementById("sign-up-form").addEventListener("submit", async (event)
   const password = formData.get("password");
 
   try {
-    //Endpoints here
+  //action attribute value "EndPoint" >>>> /register
       const response = await fetch("/register", {
           method: "POST",
           headers: {
