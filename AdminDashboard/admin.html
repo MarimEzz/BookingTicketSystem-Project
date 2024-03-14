@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <aside>
-            <img alt="logo" src="../Assets/logo.jpeg">
+            <img alt="logo" src="../Assets/log.png">
             <div class="asidebtn">
                 <a><button class="trip btnaside" id="btn-trip" onclick="tripbtn()">بيانات الرحلات</button></a>
                 <a><button class="graduate btnaside" id="btn-graduate" onclick="graduatebtn()">بيانات التخرج</button></a>
@@ -40,7 +40,6 @@
                     <tbody>
                         <!--foreach-->
                         <tr>
-                            <td></td>
                             <td>Marim ezzaldin</td>
                             <td>99999999999999</td>
                             <td>01011111111</td>
@@ -48,7 +47,6 @@
                             <td><button class="del-btn">حذف</button></td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td>Marim ezzaldin</td>
                             <td>99999999999999</td>
                             <td>01011111111</td>
@@ -76,7 +74,6 @@
                     <tbody>
                         <!--foreach-->
                         <tr>
-                            <td></td>
                             <td>Marim ezzaldin</td>
                             <td>99999999999999</td>
                             <td>Modern</td>
@@ -86,7 +83,6 @@
                             <td><button class="del-btn">حذف</button></td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -95,7 +91,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -104,7 +99,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -113,7 +107,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -122,7 +115,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -131,7 +123,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -140,7 +131,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -149,7 +139,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -158,7 +147,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -167,7 +155,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -176,7 +163,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -185,7 +171,6 @@
                             <td>7</td>
                             <td><button class="del-btn">حذف</button></td>
                         </tr><tr>
-                            <td></td>
                             <td>Marim Mohamed ezzaldin Ahmed Hassaan</td>
                             <td>99999999999999</td>
                             <td>MAM</td>
@@ -200,8 +185,11 @@
             <div id="control">
                 <form action="" method="post" name="trip-control" id="tripcontrol">
                     <div class="inline-input">
+                        <label for="trip-name"><bdi>مكان الرحلة :</bdi></label>
+                        <input type="text" value="" name="trip-name" id="trip-name" required>
+
                         <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
-                        <input type="number" min="0" value="" name="trip-price" id="trip-price">
+                        <input type="number" min="0" value="" name="trip-price" id="trip-price" required>
                     </div>
                     <input type="submit" class="btnsub" value="تأكيد">
                 </form>

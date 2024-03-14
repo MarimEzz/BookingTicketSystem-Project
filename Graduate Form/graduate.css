@@ -147,6 +147,7 @@ legend
 {
     color: #3c4fe0;
     padding: 10px;
+    padding-bottom: 0px;
     font-size: 23px;
     font-weight: bolder;
     position:absolute;
@@ -163,7 +164,7 @@ legend
 .formcontainer img
 {
     width: 45%;
-    height: auto;
+    height: 435px;
     object-fit: cover;
     border-radius: 40px 5px 5px 40px;
 }

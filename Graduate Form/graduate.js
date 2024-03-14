@@ -1,26 +1,7 @@
 //invalid message of inputs
-var fulln = document.getElementById("fn");
-var natiomalid = document.getElementById("sn");
-var univ = document.getElementById("un");
-var phone = document.getElementById("phone");
+
 var ex = document.getElementById("extra");
-fulln.setCustomValidity("Please Enter Your Full Name.");
-natiomalid.setCustomValidity("Please Enter Your National ID (14 digits).");
-univ.setCustomValidity("Please Enter Your University Name.");
-phone.setCustomValidity("Enter Your Phone Number (11 digits), Support 010, 011, 012, and 015.");
 ex.setCustomValidity("Maximum 3 only.");
-fulln.addEventListener("input", function() {
-    fulln.setCustomValidity("");
-  });
-  natiomalid.addEventListener("input", function() {
-    natiomalid.setCustomValidity("");
-  });
-  univ.addEventListener("input", function() {
-    univ.setCustomValidity("");
-  });
-  phone.addEventListener("input", function() {
-    phone.setCustomValidity("");
-  });
   ex.addEventListener("input", function() {
     ex.setCustomValidity("");
   });
@@ -131,7 +112,7 @@ console.log("National ID already exists:", nationalIds);
 
 function popup()
 {
-    document.getElementById("popup").style.top="70%";
+    document.getElementById("popup").style.top="55%";
     document.getElementById("bgcover").style.display="block";
 }
 ///////////////////////
@@ -152,6 +133,7 @@ document.getElementById("graduate").addEventListener("submit",function(e)
     return response.json();
   }).then(data=>{
     console.log("form submitted successfully:",data);
+    popup();
   }).catch(error=>{
     console.error("there was a problem with form submission:",error);
   });

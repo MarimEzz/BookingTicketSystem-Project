@@ -67,7 +67,7 @@ function graduaterowcounter()
 graduaterowcounter();
 ///////////////////////////////////////
 
-document.getElementById("control").addEventListener("submit",function(e)
+document.getElementById("tripcontrol").addEventListener("submit",function(e)
 {
   e.preventDefault();
   const controlformdata = new FormData(this);
@@ -87,3 +87,47 @@ document.getElementById("control").addEventListener("submit",function(e)
     console.error("there was a problem with form submission:",error);
   });
 });
+
+
+document.getElementById("graduatefcontrol").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const controlformdata = new FormData(this);
+  //action attribute value "EndPoint" >>>> /submit
+  fetch("/submit",{
+    method: "POST",
+    body:controlformdata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});
+
+document.getElementById("graduatexcontrol").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const controlformdata = new FormData(this);
+  //action attribute value "EndPoint" >>>> /submit
+  fetch("/submit",{
+    method: "POST",
+    body:controlformdata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});
+

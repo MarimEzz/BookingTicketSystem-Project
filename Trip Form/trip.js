@@ -1,4 +1,5 @@
 //invalid message of inputs
+/*
 var fulln = document.getElementById("fn");
 var natiomalid = document.getElementById("sn");
 var phone = document.getElementById("phone");
@@ -14,7 +15,7 @@ fulln.addEventListener("input", function() {
   phone.addEventListener("input", function() {
     phone.setCustomValidity("");
   });
-
+*/
 /////////////////////////////////////////////////
 
 const inputf = document.getElementById("free");
@@ -106,7 +107,7 @@ console.log("National ID already exists:", nationalIdsrrip);
 
 function popup()
 {
-    document.getElementById("popup").style.top="70%";
+    document.getElementById("popup").style.top="55%";
     document.getElementById("bgcover").style.display="block";
 }
 ///////////////////////////
@@ -126,6 +127,7 @@ document.getElementById("trip").addEventListener("submit",function(e)
     return response.json();
   }).then(data=>{
     console.log("form submitted successfully:",data);
+    popup();
   }).catch(error=>{
     console.error("there was a problem with form submission:",error);
   });
