@@ -31,7 +31,7 @@ document.getElementById("sign-in-form").addEventListener("submit",function(e)
   e.preventDefault();
   const signinformdata = new FormData(this);
   //action attribute value /submit
-  fetch("/submit",{
+  fetch("/http://127.0.0.1:8000/api/login",{
     method: "POST",
     body:signinformdata
   }).then(response=>{
@@ -75,17 +75,17 @@ document.getElementById("sign-in-form").addEventListener("submit", async (event)
   event.preventDefault();
   
   const formData = new FormData(event.target);
-  const username = formData.get("username");
+  const user_name = formData.get("user_name");
   const password = formData.get("password");
 
   try {
   //action attribute value "EndPoint" >>>> /login
-      const response = await fetch("login", {
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ username, password })
+          body: JSON.stringify({ user_name, password })
       });
 
       const data = await response.json();
