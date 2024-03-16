@@ -53,7 +53,7 @@ document.getElementById("sign-up-form").addEventListener("submit",function(e)
   e.preventDefault();
   const signupformdata = new FormData(this);
   //action attribute value /submit
-  fetch("/submit",{
+  fetch("http://127.0.0.1:8000/api/register",{
     method: "POST",
     body:signupformdata
   }).then(response=>{
@@ -109,17 +109,22 @@ document.getElementById("sign-up-form").addEventListener("submit", async (event)
 
   const formData = new FormData(event.target);
   const username = formData.get("username");
+  const name  = formData.get("name");
+  const nid   = formData.get("nid");
   const email = formData.get("email");
+  const university = formData.get("university");
+  const phone = formData.get("phone");
   const password = formData.get("password");
+
 
   try {
   //action attribute value "EndPoint" >>>> /register
-      const response = await fetch("/register", {
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ username, email, password })
+          body: JSON.stringify({ username, name , nid , email, university, phone , password, })
       });
 
       const data = await response.json();

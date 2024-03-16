@@ -15,38 +15,40 @@
     <div class="container">
 		<div class="forms-container">
 			<div class="signin-signup">
+				<!-- signin form -->
 				<form action="http://127.0.0.1:8000/api/login" method="post" name="sign-in-form" id="sign-in-form">
 					<h2 class="title">تسجيل دخول</h2>
 					<label class="input-field user">
-						<input type="text" placeholder="إسم المستخدم" pattern="[a-zA-Z0-9]{3,}" required/>
+						<input type="text" placeholder="إسم المستخدم" name="user_name" pattern="[a-zA-Z0-9]{3,}" required/>
 					</label>
 					<label class="input-field pass">					
-                        <input type="password" placeholder="كلمة المرور" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                        <input type="password" placeholder="كلمة المرور" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
 					</label>
 					<input type="submit" value="تسجيل دخول" id="btnin" class="btn solid" />
 				</form>
-				<form action="" method="post" name="sign-up-form" id="sign-up-form">
+				<!-- signup form -->
+				<form action="http://127.0.0.1:8000/api/register" method="post" name="sign-up-form" id="sign-up-form">
 					<h2 class="title">إنشاء حساب</h2>
 					<label class="input-field user">					
-                        <input type="text" placeholder="إسم المستخدم" pattern="[a-zA-Z0-9]{3,}" title="minimun 3 character" required/>
+                        <input type="text" placeholder="إسم المستخدم" name="user_name" pattern="[a-zA-Z0-9]{3,}" title="minimun 3 character" required/>
                     </label>
 					<label class="input-field user">					
-						<input type="text" placeholder="الاإسم رباعي (بالإنجليزية)" name="fn" id="fn" minlength="11" title="Please Enter Your Full Name." required>
+						<input type="text" placeholder="الاإسم رباعي (بالإنجليزية)" name="name" id="fn" minlength="11" title="Please Enter Your Full Name." required>
                     </label>
 					<label class="input-field user">					
-						<input type="text" placeholder="الرقم القومي" name="sn" id="sn" size="14" pattern="[0-9]{14}" title="Please Enter Your National ID (14 digits)." required>
+						<input type="text" placeholder="الرقم القومي" name="nid" id="sn" size="14" pattern="[0-9]{14}" title="Please Enter Your National ID (14 digits)." required>
                     </label>
 					<label class="input-field ema">					
-                        <input type="email" placeholder="البريد الإلكتروني" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Email Must Contain @" required/>
+                        <input type="email" placeholder="البريد الإلكتروني" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Email Must Contain @" required/>
 					</label>
 					<label class="input-field build">					
-						<input type="text" placeholder="إسم الكلية أو المعهد" name="un" id="un" title="Please Enter Your University Name" required minlength="3">
+						<input type="text" placeholder="إسم الكلية أو المعهد" name="University" id="un"  title="Please Enter Your University Name"    minlength="3">
                     </label>
 					<label class="input-field ph">					
 						<input type="text" placeholder="رقم الهاتف للتواصل" name="phone" id="phone" title="Enter Your Phone Number (11 digits), Support 010, 011, 012, and 015." required pattern="^01[0-2,5]\d{8}$">
                     </label>
 					<label class="input-field pass">					
-                        <input type="password" id="pass" placeholder="كلمة المرور" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                        <input type="password" id="pass" placeholder="كلمة المرور" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
                     </label>
                     <label class="input-field pass">					
                         <input type="password" id="match" placeholder="تأكيد كلمة المرور" title="Password Not Matched!" required/>
