@@ -115,7 +115,7 @@ document.getElementById("trip").addEventListener("submit",function(e)
 {
   e.preventDefault();
   const tripformdata = new FormData(this);
-  //action attribute value "EndPoint" >>>> /submit
+  //action attribute value "EndPoint" >>>> /submit  bill creation
   fetch("/submit",{
     method: "POST",
     body:tripformdata
