@@ -111,30 +111,73 @@ console.log("National ID already exists:", nationalIds);
 //////////////////////////////////////////
 
 function popup()
-{
+{ //if subnission success display msg
     document.getElementById("popup").style.top="55%";
     document.getElementById("bgcover").style.display="block";
 }
 ///////////////////////
 
-document.getElementById("graduate").addEventListener("submit",function(e)
-{
+document.getElementById("graduate").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const graduateformdata = new FormData(this);
-  //action attribute value "EndPoint" >>>> /submit
-  fetch("/submit",{
-    method: "POST",
-    body:graduateformdata
-  }).then(response=>{
-    if(!response.ok)
-    {
-      throw new Error("Network response was not ok")
-    }
-    return response.json();
-  }).then(data=>{
-    console.log("form submitted successfully:",data);
-    popup();
-  }).catch(error=>{
-    console.error("there was a problem with form submission:",error);
-  });
+  
+  const formData = new FormData(e.target);
+  const free = formData.get("free");
+  const extra = formData.get("extra");
+
+  try {
+  //action attribute value "EndPoint" >>>> /graduate form submission 
+      const response = await fetch("/////////", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ free, extra})
+      });
+
+      const data = await response.json();
+
+      if (response.ok)
+      {
+        popup();   
+      }
+      else 
+      {
+        /* const errormsg = document.getElementById("errormsg");
+        errormsg.style.display = "block"; */
+        console.error("Submission failed:", data.message);
+      }
+  } 
+  catch (error) {
+      console.error("Error during submission:", error);
+  }
 });
+////////////////////////////////
+
+//Logout 
+async function logout() {
+  try {  
+      //action attribute value "EndPoint" >>>> /logout
+      const response = await fetch("//////", {
+          method: "POST",
+          headers: {
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+      });
+
+      // Check if the logout request was successful (you may need to adjust this based on your API's response)
+      if (response.ok) 
+      {  //if ok remove token + redirect to login
+          localStorage.removeItem("token");
+          window.location.href = "../SignLog/signlog.html";
+      } 
+      else 
+      {
+          console. error("Logout failed:", response. statusText);
+      }
+  } catch (error) {
+      console.error("Error during logout:", error);
+  }
+}
+
+// Example: Attach logout functionality to a logout button
+document.getElementById("logout").addEventListener("click", logout);

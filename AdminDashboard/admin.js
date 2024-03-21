@@ -1,5 +1,4 @@
-
-
+// Display Pages from Aside bar (dataTrip - dataGraduate - Controls)
 function tripbtn()
 {
     document.getElementById("imglogo").style.display="none";
@@ -27,6 +26,7 @@ function controlbtn()
     document.getElementById("control").style.display="flex";
 }
 
+// Aside buttons Activation
 const buttons = document.querySelectorAll('.btnaside');
 buttons.forEach(button=> {
   button.addEventListener('click', function(){
@@ -39,6 +39,7 @@ buttons.forEach(button=> {
 });
 //////////////////////////////////
 
+// Counter for dataTrip Rows
 function triprowcounter()
 {
     var tabletrip = document.getElementById("tripdata");
@@ -52,6 +53,8 @@ function triprowcounter()
     }
 }
 triprowcounter();
+
+// Counter for dataGraduate Rows
 function graduaterowcounter()
 {
     var tablegraduate = document.getElementById("graduatedata");
@@ -67,67 +70,98 @@ function graduaterowcounter()
 graduaterowcounter();
 ///////////////////////////////////////
 
-document.getElementById("tripcontrol").addEventListener("submit",function(e)
-{
+document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const controlformdata = new FormData(this);
-  //action attribute value "EndPoint" >>>> /submit
-  fetch("/submit",{
-    method: "POST",
-    body:controlformdata
-  }).then(response=>{
-    if(!response.ok)
-    {
-      throw new Error("Network response was not ok")
-    }
-    return response.json();
-  }).then(data=>{
-    console.log("form submitted successfully:",data);
-  }).catch(error=>{
-    console.error("there was a problem with form submission:",error);
-  });
+  
+  const formData = new FormData(e.target);
+  const tripprice = formData.get("trip-price");
+  const tripname = formData.get("trip-name");
+  const tripimg = formData.get("trip-img");
+  const graduate_free = formData.get("gfree-price");
+  const graduate_extra = formData.get("gextra-price");
+  const gradeimg = formData.get("grade-img");
+
+  try {
+  //action attribute value "EndPoint" >>>> /Admin Controls
+      const response = await fetch("/////////", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg})
+      });
+
+      const data = await response.json();
+
+      if (response.ok)
+      {
+        const successmsg = document.getElementById("successmsg");
+        successmsg.style.display = "block";      
+      }
+      else if (response.status === 401)
+      { // if Admin Unauthorized access go to login
+        window.location.href="../SignLog/singlog.html";
+      }
+      else 
+      {
+        const errormsg = document.getElementById("errormsg");
+        errormsg.style.display = "block";
+        console.error("Submission failed:", data.message);
+      }
+  } 
+  catch (error) {
+      console.error("Error during submission:", error);
+  }
 });
 
-
-document.getElementById("graduatefcontrol").addEventListener("submit",function(e)
-{
-  e.preventDefault();
-  const controlformdata = new FormData(this);
-  //action attribute value "EndPoint" >>>> /submit
-  fetch("/submit",{
-    method: "POST",
-    body:controlformdata
-  }).then(response=>{
-    if(!response.ok)
-    {
-      throw new Error("Network response was not ok")
+/////////////////////////////////////
+// Added Button To Download dataTrip on Excle File
+function TravelToExcel() {
+  let table = document.getElementsByTagName("table");
+  TableToExcel.convert(table[0], { 
+    name: `Travels.xlsx`,
+    sheet: {
+      name: 'Travels 1' // sheetName
     }
-    return response.json();
-  }).then(data=>{
-    console.log("form submitted successfully:",data);
-  }).catch(error=>{
-    console.error("there was a problem with form submission:",error);
   });
-});
+}
 
-document.getElementById("graduatexcontrol").addEventListener("submit",function(e)
-{
-  e.preventDefault();
-  const controlformdata = new FormData(this);
-  //action attribute value "EndPoint" >>>> /submit
-  fetch("/submit",{
-    method: "POST",
-    body:controlformdata
-  }).then(response=>{
-    if(!response.ok)
-    {
-      throw new Error("Network response was not ok")
+// Added Button To Download dataGraduate on Excle File
+function GraduateToExcel() {
+  let table = document.getElementsByTagName("table"); 
+  TableToExcel.convert(table[1], { 
+    name: `Graduates.xlsx`, 
+    sheet: {
+      name: 'Graduates 1' // sheetName
     }
-    return response.json();
-  }).then(data=>{
-    console.log("form submitted successfully:",data);
-  }).catch(error=>{
-    console.error("there was a problem with form submission:",error);
   });
-});
+}
+///////////////////////////////////////
+//Logout 
+async function logout() {
+  try {  
+      //action attribute value "EndPoint" >>>> /logout
+      const response = await fetch("//////", {
+          method: "POST",
+          headers: {
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+      });
 
+      // Check if the logout request was successful (you may need to adjust this based on your API's response)
+      if (response.ok) 
+      {  //if ok remove token + redirect to login
+          localStorage.removeItem("token");
+          window.location.href = "../SignLog/signlog.html";
+      } 
+      else 
+      {
+          console. error("Logout failed:", response. statusText);
+      }
+  } catch (error) {
+      console.error("Error during logout:", error);
+  }
+}
+
+// Example: Attach logout functionality to a logout button
+document.getElementById("logout").addEventListener("click", logout);

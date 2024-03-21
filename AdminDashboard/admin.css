@@ -3,12 +3,9 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: hidden;
     font-family: "Cairo", sans-serif;
 }
-
-.container
+.containerr
 {
     display: flex;
 }
@@ -34,7 +31,7 @@ aside img
     justify-content: center;
     overflow: visible;
 }
-aside button
+aside button, .img-btn
 {
     margin: 0;
     width: auto;
@@ -52,26 +49,37 @@ aside button
     border-radius: 6px;
     color: #36395a;
     transition: box-shadow 0.15s ease,transform 0.15s ease;    
+    cursor: pointer;
+}
+.img-btn
+{
+    margin: 15px 6px;
 }
 aside a
 {
     margin: 10px auto;
 
 }
-aside button:hover {
+aside button:hover, .img-btn:hover {
     box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
     transform: translateY(-2px);
 }
-aside button:active{
+aside button:active, .img-btn:active{
     box-shadow: inset 0px 3px 7px #d6d6e7;
     transform: translateY(2px);
+}
+#logout
+{
+    width: 150px;
+    height: 40px;
+    margin: 10px auto;
 }
 aside .active
 {
     background-color: #3b52ff;
     color: #fff;
 }
-#control input[type="number"], #control input[type="text"]{
+#control input:not(input[type="submit"], input[type="file"]) {
     outline: none;    
     color: rgb(36, 35, 42);
     font-size: 18px;
@@ -84,9 +92,15 @@ aside .active
     background: rgb(251, 251, 251);
     transition: all 0.1s ease 0s;
     margin: 5px;
+    width: 57%;
+    text-align: end;
 }
-#control input[type="number"]:focus, #control input[type="text"]:focus{
+#control input:not(input[type="submit"]):focus{
     border: 2px solid rgb(124, 138, 255);
+}
+#control input[type="file"]
+{
+    display: none;
 }
 #graduate-data
 {
@@ -104,20 +118,15 @@ aside .active
 {
     display: none; /*flex*/
     align-items: center;
-    justify-content: center;
     height: 100vh;
 }
 #control form
 {
-    text-align: center;
     margin: 10px;
     padding: 10px;
-}
-#control .inline-input
-{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    width: 100%;
     align-items: center;
 }
 .admin-body
@@ -133,7 +142,7 @@ aside .active
     transform: translate(-50%,-50%);
     display: block;
 }
-.btnsub
+.btnsub, .export
 {
     display: inline-block;
     outline: 0;
@@ -213,7 +222,7 @@ tbody tr:hover
     box-shadow: inset 0px 3px 7px #ff4747;
     transform: translateY(2px);
 }
-h2
+.centered
 {
     position: sticky;
     top:0;
@@ -223,13 +232,42 @@ h2
     background-color: #fff;
     padding: 3px;
     z-index: 3;
+    padding-bottom: 10px;
 }
-
+.export
+{
+    width: auto;
+}
+.export:hover
+{
+    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+    transform: translateY(-2px);
+}
+.export:active
+{
+    box-shadow: inset 0px 3px 7px #3c4fe0;
+    transform: translateY(2px);
+}
+#successmsg, #errormsg
+{
+    display: none;
+}
+@media only screen and (max-width: 768px) 
+{
+    .centered
+    {
+        width: 114%;
+    }
+}
 @media only screen and (max-width: 600px) 
 {
-    .container
+    .containerr
     {
         flex-direction: column;
+    }
+    table
+    {
+        width: 216%;
     }
     aside
     {
@@ -266,13 +304,9 @@ h2
     {
         transform: translate(-50%, -100%);
     }
-    *
+    .centered
     {
-        overflow: auto;
-    }
-    h2
-    {
-        width: 180%;
+        width: 216%;
     }
     #control
     {
@@ -280,13 +314,5 @@ h2
         justify-content: start;
         margin-top: 35px;
 
-    }
-    #control .inline-input
-    {
-        flex-direction: column;
-    }
-    #control form
-    {
-        overflow: visible;
     }
 }

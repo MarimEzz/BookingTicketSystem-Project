@@ -14,7 +14,9 @@
 <body>
     <div id="bgcover"></div>
     <nav>
+        <div></div>
         <img src="../Assets/logow.png" alt="MAM logo">
+        <button id="logout" onclick="">تسجيل خروج</button>
     </nav>
     <a href="../index.html"><button class="back"><svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
@@ -52,7 +54,7 @@
                     </select>
                     <label for="free"><bdi>عدد التذاكر :</bdi></label>
                     <div class="freeprice">
-                        <input type="number" min="0" value="" id="free" accesskey="f">
+                        <input type="number" min="0" value="" name="free" id="free" accesskey="f">
                         <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100" readonly> 
                     </div>
                     <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
