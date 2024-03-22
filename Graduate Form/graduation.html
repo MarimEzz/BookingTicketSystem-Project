@@ -40,28 +40,18 @@
         <fieldset>
             <legend><bdi>حجز تذكرة حفل التخرج :</bdi></legend>
             <div class="formcontainer">
-                <img alt="" src="../Assets/g.jfif">
+                <img id="imggraduateform" alt="graduateimg" src="../Assets/g.jfif">
                 <div class="inputfield">
-                <!--
-                    <label for="fn"><bdi>الإسم الرباعي (بالإنجليزية) :</bdi></label>
-                    <input type="text" name="fn" id="fn" minlength="11" required>
-                    <label for="sn"><bdi>الرقم القومي :</bdi></label>
-                    <input type="text" name="sn" id="sn" size="14" pattern="[0-9]{14}" required>
-                    <label for="un"><bdi>إسم الكلية او المعهد  (بالإنجليزية):</bdi></label>
-                    <input type="text" name="un" id="un" required minlength="3">
-                    <label for="phone"><bdi>رقم الهاتف للتواصل :</bdi></label>
-                    <input type="text" name="phone" id="phone" required pattern="^01[0-2,5]\d{8}$">
-                -->
                     <label for="free"><bdi>عدد المرافقين ال Free :</bdi></label>
                     <div class="freeprice">
                         <input type="text" value="2" name="free" id="free" accesskey="f" readonly>
-                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100" readonly> 
+                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="" readonly> 
                     </div>
                     <label for="extra"><bdi>عدد المرافقين ال Extra : <u class="uline"> حد اقصى 3</u></bdi></label>
                     <div class="extraprice">
-                        <input type="number" max="3" min="0" value="" name="extra" id="extra" accesskey="x" required>
+                        <input type="number" max="3" min="0" value="0" name="extra" id="extra" accesskey="x" required>
                         <!-- use this after log in admin <h2 class="price"><span id="extraprice" contenteditable="false">100</span> EGP</h2>-->
-                        <span>EGP</span><input type="text" class="notinput" id="extraprice" value="100" readonly>
+                        <span>EGP</span><input type="text" class="notinput" id="extraprice" value="" readonly>
                     </div>
                     <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
                     <input type="submit" class="btnsub" value="Submit">

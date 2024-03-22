@@ -36,26 +36,17 @@
         <fieldset>
             <legend><bdi>حجز تذكرة رحلات :</bdi></legend>
             <div class="formcontainer">
-                <img alt="" src="../Assets/Road Trip the Southwest.jfif">
+                <img alt="tripdestination" id="imgtripform" src="../Assets/Road Trip the Southwest.jfif">
                 <div class="inputfield">
-                <!--
-                    <label for="fn"><bdi>الإسم الرباعي (بالإنجليزية) :</bdi></label>
-                    <input type="text" name="fn" id="fn" minlength="11" required>
-                    <label for="sn"><bdi>الرقم القومي :</bdi></label>
-                    <input type="text" name="sn" id="sn" size="14" pattern="[0-9]{14}" required>
-                    <label for="phone"><bdi>رقم الهاتف للتواصل :</bdi></label>
-                    <input type="text" name="phone" id="phone" required pattern="^01[0-2,5]\d{8}$">
-                -->
                     <label for="tripname"><bdi>إختر رحلتك :</bdi></label>
                     <select id="tripname" name="tripname" required>
-                        <option value=""></option>
-                        <option value="Alex">Alex</option>
-                        <option value="Dahab">Dahab</option>
+                        <option>إختر :</option>
+                        <!--For loop-->
                     </select>
                     <label for="free"><bdi>عدد التذاكر :</bdi></label>
                     <div class="freeprice">
-                        <input type="number" min="0" value="" name="free" id="free" accesskey="f">
-                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="100" readonly> 
+                        <input type="number" min="0" value="0" name="free" id="free" accesskey="f">
+                        <span>EGP</span><input type="text" class="notinput" id="freeprice" value="" readonly> 
                     </div>
                     <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
                     <input type="submit" class="btnsub" value="Submit">

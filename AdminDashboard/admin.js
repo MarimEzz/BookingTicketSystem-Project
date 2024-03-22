@@ -37,37 +37,82 @@ buttons.forEach(button=> {
     this.classList.add('active');
   });
 });
+
 //////////////////////////////////
+// delete row buton on each form (trip - graduate)
+/*const tripTable = document.getElementById("tripdata");
+const graduateTable = document.getElementById("graduatedata");
 
-// Counter for dataTrip Rows
-function triprowcounter()
-{
-    var tabletrip = document.getElementById("tripdata");
-    var rowst = tabletrip.getElementsByTagName("tr");
-    var countt=1;
-    for(var i=1; i<rowst.length;i++)
-    {
-        var rowt = rowst[i];
-        var cellt = rowt.insertCell(0);
-        cellt.textContent=countt++;
-    }
-}
-triprowcounter();
+const tripDeleteButtons = document.querySelectorAll('.del-trip-btn');
+tripDeleteButtons.forEach(button => {
+  button.addEventListener('click', deleteTRow);
+});
 
-// Counter for dataGraduate Rows
-function graduaterowcounter()
-{
-    var tablegraduate = document.getElementById("graduatedata");
-    var rowsg = tablegraduate.getElementsByTagName("tr");
-    var countg=1;
-    for(var i=1; i<rowsg.length;i++)
-    {
-        var rowg = rowsg[i];
-        var cellg = rowg.insertCell(0);
-        cellg.textContent=countg++;
-    }
+const graduateDeleteButtons = document.querySelectorAll('.del-graduate-btn');
+graduateDeleteButtons.forEach(button => {
+  button.addEventListener('click', deleteGRow);
+});
+
+function deleteTRow(event) {
+  const button = event.target;
+  const row = button.closest('tr');
+  if (row) {
+    fetch(`/////`, { method: 'DELETE' }) //delete row from travel
+      .then(response => {
+        if (response.ok) {
+          // Remove the row from the table
+          row.remove();
+          updateTripCounter();
+        } else {
+          console.error('Failed to delete trip:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting trip:', error);
+      });
+  }
 }
-graduaterowcounter();
+
+function deleteGRow(event) {
+  const button = event.target;
+  const row = button.closest('tr');
+  if (row) {
+    fetch(`/////`, { method: 'DELETE' }) //delete row from graduate
+      .then(response => {
+        if (response.ok) {
+          // Remove the row from the table
+          row.remove();
+          updateGraduateCounter();
+        } else {
+          console.error('Failed to delete Graduate:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting Graduate:', error);
+      });
+  }
+}
+// update row counter when delete row
+function updateTripCounter() {
+  const rows = tripTable.querySelectorAll('tr');
+  for (let i = 1; i < rows.length; i++) {
+    const cell = rows[i].querySelector('td:first-child');
+    if (cell) {
+      cell.textContent = i;
+    }
+  }
+}
+updateTripCounter();
+function updateGraduateCounter() {
+  const rows = graduateTable.querySelectorAll('tr');
+  for (let i = 1; i < rows.length; i++) {
+    const cell = rows[i].querySelector('td:first-child');
+    if (cell) {
+      cell.textContent = i;
+    }
+  }
+}
+updateGraduateCounter();*/
 ///////////////////////////////////////
 
 document.getElementById("formcontrol").addEventListener("submit", async (e) => {
@@ -165,3 +210,109 @@ async function logout() {
 
 // Example: Attach logout functionality to a logout button
 document.getElementById("logout").addEventListener("click", logout);
+///////////////////////////
+
+//////////////////////////////////
+//... Get json travels data
+
+var travelsData = [];
+var travrequest =new XMLHttpRequest();
+//Here to put API GET for travels data
+travrequest.open("GET","https://dummyjson.com/users");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+travrequest.send();
+travrequest.addEventListener("readystatechange", function(){
+  if(travrequest.readyState == 4 && travrequest.status == 200)
+  {
+    //console.log(travrequest.response); //as string
+    //travelsData =JSON.parse(travrequest.response).category;  //category:[{,,,}]
+
+    travelsData =JSON.parse(travrequest.response).users; 
+    console.log(travelsData); //as Array
+    const tableRow = document.querySelector('#tripdata caption');
+    if (tableRow) {
+        tableRow.remove();
+    }
+    DisplayTravels(); //display data
+  }
+  else
+  {
+    console.log("connection failed!");
+  }
+});
+
+////////////////
+//... Display travels data to table
+
+function DisplayTravels()
+{
+  var box = ``;
+  for(var i=0; i<travelsData.length; i++)
+  {
+    box +=
+    ` <tr>
+        <td>${travelsData[i].id}</td>
+        <td>${travelsData[i].firstName}</td>
+        <td>${travelsData[i].birthDate}</td>
+        <td>${travelsData[i].username}</td>
+        <td>${travelsData[i].phone}</td>
+        <td>${travelsData[i].age}</td>
+        <td><button class="del-trip-btn">حذف</button></td>
+      </tr> `
+  }
+  document.getElementById("displayTrip").innerHTML = box;
+}
+//////////////////////////////////
+
+//////////////////////////////////
+
+//////////////////////////////////
+
+//... Get json graduates data
+
+var graduateData = [];
+var gradrequest =new XMLHttpRequest();
+//Here to put API GET for travels data
+gradrequest.open("GET","https://dummyjson.com/carts");//<<<<<<<<<<<<<<<<<<<
+gradrequest.send();
+gradrequest.addEventListener("readystatechange", function(){
+  if(gradrequest.readyState == 4 && gradrequest.status == 200)
+  {
+    //console.log(gradrequest.response); //as string
+    //graduateData =JSON.parse(gradrequest.response).category;  //category:[{,,,}]
+
+    graduateData =JSON.parse(gradrequest.response).carts; //<<<<<<<<<<<<<
+    console.log(graduateData); //as Array
+    const tableRow = document.querySelector('#graduatedata caption');
+    if (tableRow) {
+        tableRow.remove();
+    }
+    DisplayGraduate(); //display data
+  }
+  else
+  {
+    console.log("connection failed!");
+  }
+});
+
+////////////////
+//... Display graduates data to table
+
+function DisplayGraduate()
+{
+  var box = ``;
+  for(var i=0; i<graduateData.length; i++)
+  {
+    box +=
+    ` <tr>
+        <td>${graduateData[i].id}</td>
+        <td>${graduateData[i].products[0].title}</td>
+        <td>${graduateData[i].products[0].discountPercentage}</td>
+        <td>${graduateData[i].products[0].unv}</td>
+        <td>${graduateData[i].products[0].phone}</td>
+        <td>${graduateData[i].products[0].quantity}</td>
+        <td>${graduateData[i].products[0].total}</td>
+        <td><button class="del-graduate-btn">حذف</button></td>
+      </tr> `
+  }
+  document.getElementById("displayGraduate").innerHTML = box;
+}

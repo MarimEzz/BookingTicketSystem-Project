@@ -13,18 +13,61 @@ const fprice = document.getElementById("freeprice");
 const total = document.getElementById("total");
 var poptotal = document.getElementById("ft");
 
-// Update prices from localStorage if available
-if (localStorage.getItem('xprice')) {
-    xprice.value = localStorage.getItem('xprice');
-}
 
-if (localStorage.getItem('fprice')) {
-    fprice.value = localStorage.getItem('fprice');
-}
+var graduData = [];
+var getgradu =new XMLHttpRequest();
+//Here to put API GET for Graduates data
+getgradu.open("GET",",,,url,,,");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+getgradu.send();
+getgradu.addEventListener("readystatechange", function(){
+  if(getgradu.readyState == 4 && getgradu.status == 200)
+  {
+    //console.log(getgradu.response); //as string
+    //graduData =JSON.parse(getgradu.response).category;  //category:[{,,,}]
+
+    graduData =JSON.parse(getgradu.response); 
+    console.log(graduData); //as Array
+      xprice.value = graduData.gradus[0].extra; //<<<<<<<
+      fprice.value = graduData.gradus[0].free; //<<<<<<<<
+
+      // Initialize total with the value of fprice
+      total.innerHTML = +fprice.value;
+
+      // Update total when inputx value changes
+      inputx.addEventListener("change", dynamicExtra);
+
+      function dynamicExtra() {
+          let xval = inputx.value;
+          let fval = fprice.value;
+          let price = xprice.value;
+          total.innerHTML = +fval + price * xval;
+          poptotal.innerHTML=total.innerHTML;
+        }
+  }
+  else
+  {
+    console.log("connection failed!");
+  }
+}); 
+
+
+// get graduate data from dashboard (graduate free, extra, image)
+
+
+/*var graduData = {"gradus": [
+  {
+    "graduId": 1,
+    "free": 50,
+    "extra": 100
+  }]
+};
+
+xprice.value = graduData.gradus[0].extra;
+fprice.value = graduData.gradus[0].free;
+
 
 // Initialize total with the value of fprice
-var totall=+fprice.value + +xprice.value * +inputx.value;
-total.innerHTML = totall;
+total.innerHTML = +fprice.value;
 
 // Update total when inputx value changes
 inputx.addEventListener("change", dynamicExtra);
@@ -38,7 +81,7 @@ function dynamicExtra() {
 }
 
 // Admin change price for extra ticket
-document.addEventListener('keydown', function(event) {
+/* document.addEventListener('keydown', function(event) {
     if (event.altKey && event.key === 'x') {
         const newValue = prompt('Enter Price Of Extra ticket:');
         if (newValue !== null) {
@@ -48,9 +91,9 @@ document.addEventListener('keydown', function(event) {
             poptotal.innerHTML=total.innerHTML;
         }
     }
-});
+}); */
 // Admin change price for free ticket
-document.addEventListener('keydown', function(event) {
+/* document.addEventListener('keydown', function(event) {
     if (event.altKey && event.key === 'f') {
         const newValue = prompt('Enter Price Of Free Ticket:');
         if (newValue !== null) {
@@ -60,56 +103,8 @@ document.addEventListener('keydown', function(event) {
             poptotal.innerHTML=total.innerHTML;
         }
     }
-});
+}); */
 //////////////////////////////////////
-/*
-// Function to check if national ID value is stored before
-function isNationalIdStored(nationalId) 
-{
-  return nationalIds.includes(nationalId);
-}
-// Function to add a new national ID to the array
-function addNationalId(nationalId)
-{
-  if (!isNationalIdStored(nationalId)) 
-  {
-      nationalIds.push(nationalId);
-      localStorage.setItem("nationalIds", JSON.stringify(nationalIds));
-      console.log("National ID added:", nationalId);
-      popup();
-  } 
-  else 
-  {
-      console.log("National ID already exists:", nationalIds);
-      alert("This National ID has already been submitted!");
-  }
-}
-
-// Initialize an array to store national IDs
-let nationalIds = JSON.parse(localStorage.getItem("nationalIds")) || [];
-
-// Event listener for form submission
-document.getElementById("graduate").addEventListener("submit", function(event)
-{
-  event.preventDefault(); // Prevent form submission
-  let nationalId = document.getElementById("sn").value;
-  if (this.checkValidity()) 
-  {
-    addNationalId(nationalId);
-  } 
-  else 
-  {
-    // Display an alert if any input is invalid
-    alert("Please fill out all fields correctly.");
-  }
-});
-
-//localStorage.clear(); //to delete all data
-//localStorage.removeItem('key'); //to delete a specific ID
-console.log("National ID already exists:", nationalIds);
-*/
-//////////////////////////////////////////
-
 function popup()
 { //if subnission success display msg
     document.getElementById("popup").style.top="55%";
