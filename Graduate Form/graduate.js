@@ -17,7 +17,7 @@ var poptotal = document.getElementById("ft");
 var graduData = [];
 var getgradu =new XMLHttpRequest();
 //Here to put API GET for Graduates data
-getgradu.open("GET",",,,url,,,");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+getgradu.open("GET","http://127.0.0.1:8000/api/grad");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 getgradu.send();
 getgradu.addEventListener("readystatechange", function(){
   if(getgradu.readyState == 4 && getgradu.status == 200)
@@ -27,8 +27,8 @@ getgradu.addEventListener("readystatechange", function(){
 
     graduData =JSON.parse(getgradu.response); 
     console.log(graduData); //as Array
-      xprice.value = graduData.gradus[0].extra; //<<<<<<<
-      fprice.value = graduData.gradus[0].free; //<<<<<<<<
+      xprice.value = graduData[0].extra_price; //<<<<<<<
+      fprice.value = graduData[0].ticket_price; //<<<<<<<<
 
       // Initialize total with the value of fprice
       total.innerHTML = +fprice.value;

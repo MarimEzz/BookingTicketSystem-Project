@@ -26,13 +26,13 @@ else
 }
 })
 //////////////////////////// Duplicated Code XXX(DELETE)
-/*
+
 document.getElementById("sign-in-form").addEventListener("submit",function(e)
 {
   e.preventDefault();
   const signinformdata = new FormData(this);
   //action attribute value /submit
-  fetch("/http://127.0.0.1:8000/api/login",{
+  fetch("http://127.0.0.1:8000/api/login",{
     method: "POST",
     body:signinformdata
   }).then(response=>{
@@ -46,9 +46,9 @@ document.getElementById("sign-in-form").addEventListener("submit",function(e)
   }).catch(error=>{
     console.error("there was a problem with form submission:",error);
   });
-});*/
+});
 ///////////////////////////
-/*
+
 document.getElementById("sign-up-form").addEventListener("submit",function(e)
 {
   e.preventDefault();
@@ -68,7 +68,7 @@ document.getElementById("sign-up-form").addEventListener("submit",function(e)
   }).catch(error=>{
     console.error("there was a problem with form submission:",error);
   });
-});*/
+});
 ///////////////////////////
 
 // Function to handle sign-in form submission
@@ -124,7 +124,7 @@ document.getElementById("sign-up-form").addEventListener("submit", async (event)
   event.preventDefault();
 
   const formData = new FormData(event.target);
-  const username = formData.get("username");
+  const user_name = formData.get("user_name");
   const name  = formData.get("name");
   const nid   = formData.get("nid");
   const email = formData.get("email");
@@ -140,11 +140,10 @@ document.getElementById("sign-up-form").addEventListener("submit", async (event)
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ username, name , nid , email, university, phone , password, })
+          body: JSON.stringify({ user_name, name , nid , email, university, phone , password, })
       });
 
       const data = await response.json();
-
       // Check if registration was successful
       if (response.ok)
       {

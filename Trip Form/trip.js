@@ -2,6 +2,7 @@ const inputf = document.getElementById("free");
 const fpricetrip = document.getElementById("freeprice");
 const total = document.getElementById("total");
 const tripSelect = document.getElementById("tripname");
+const id = document.getElementById("id");
 var poptotal = document.getElementById("ft");
 
 
@@ -9,7 +10,7 @@ var poptotal = document.getElementById("ft");
 var tripData = [];
 var gettrip =new XMLHttpRequest();
 //Here to put API GET for travels data
-gettrip.open("GET",",,,url,,,");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+gettrip.open("GET","http://127.0.0.1:8000/api/travel");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 gettrip.send();
 gettrip.addEventListener("readystatechange", function(){
   if(gettrip.readyState == 4 && gettrip.status == 200)
@@ -20,21 +21,24 @@ gettrip.addEventListener("readystatechange", function(){
     tripData =JSON.parse(gettrip.response); 
     console.log(tripData); //as Array
       // Populate select options
-      tripData.trips.forEach(trip => {  //<<<<<<<<<<<<<<<<
+      tripData.forEach(trip => {  //<<<<<<<<<<<<<<<<
       const option = document.createElement("option");
-      option.value = trip.price;
-      option.textContent = trip.destination;
+      option.value = trip.ticket_price;
+      id.value=trip.id;
+      option.textContent = trip.location;
       tripSelect.appendChild(option);
       });
 
       // Function to update price when option changes
       tripSelect.addEventListener("change", () => 
       {
-        const selectedTripId = parseInt(tripSelect.value);
-        const selectedTrip = tripData.trips.find(trip => trip.price === selectedTripId); //<<<<<<<<<
+        const selectedTripId = parseInt(tripSelect.id);
+        const selectedTrip = tripData.find(trip => trip.id === selectedTripId); //<<<<<<<<<
         if (selectedTrip) 
         {
-        fpricetrip.value = `${selectedTrip.price}`;
+        fpricetrip.value = `${selectedTrip.ticket_price}`;
+        id.value=selectedTrip.id;
+        console.log(selectedTrip);
         } 
         else 
         {
@@ -149,15 +153,17 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const tripname = formData.get("tripname");
   const free = formData.get("free");
+  const event_id = formData.get("id");
 
   try {
   //action attribute value "EndPoint" >>>> /trip form submission 
-      const response = await fetch("/////////", {
+      const response = await fetch("http://127.0.0.1:8000/api/userBill", {
           method: "POST",
           headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ tripname, free})
+          body: JSON.stringify({ tripname, free,event_id})
       });
 
       const data = await response.json();
