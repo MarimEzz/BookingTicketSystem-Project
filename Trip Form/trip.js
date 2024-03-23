@@ -31,9 +31,9 @@ gettrip.addEventListener("readystatechange", function(){
       tripSelect.addEventListener("change", () => 
       {
         const selectedTripPrice = parseInt(tripSelect.value);
-        selectedTrip = tripData.trips.find(trip => trip.ticket_price === selectedTripPrice);
+        selectedTrip = tripData.find(trip => trip.ticket_price === selectedTripPrice);
         if (selectedTrip) {
-        inputId.value = `${selectedTrip.tripId}`;
+        inputId.value = `${selectedTrip.id}`;
         fpricetrip.value = `${selectedTrip.ticket_price}`;
       } 
       else 
@@ -57,7 +57,7 @@ gettrip.addEventListener("readystatechange", function(){
         // Get the selected trip's price
         const selectedTripPrice = parseInt(tripSelect.value);
         fpricetrip.value = selectedTripPrice; 
-        inputId.value = `${selectedTrip.tripId}`;
+        inputId.value = `${selectedTrip.id}`;
         calcTotal(); // Update the total
       });
   }
@@ -154,7 +154,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const tripname = formData.get("tripname");
   const free = formData.get("free");
-  const tripId = formData.get("tripId");
+  const id = formData.get("tripId");
   try {
   //action attribute value "EndPoint" >>>> /trip form submission 
       const response = await fetch("http://127.0.0.1:8000/api/userBill", {
@@ -163,7 +163,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ tripname, free, tripId})
+          body: JSON.stringify({ tripname, free, id})
       });
 
       const data = await response.json();
