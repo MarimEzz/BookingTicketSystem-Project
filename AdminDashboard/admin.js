@@ -218,7 +218,7 @@ document.getElementById("logout").addEventListener("click", logout);
 var travelsData = [];
 var travrequest =new XMLHttpRequest();
 //Here to put API GET for travels data
-travrequest.open("GET","https://dummyjson.com/users");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+travrequest.open("GET","http://127.0.0.1:8000/api/userandbill");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 travrequest.send();
 travrequest.addEventListener("readystatechange", function(){
   if(travrequest.readyState == 4 && travrequest.status == 200)
