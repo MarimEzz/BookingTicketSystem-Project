@@ -166,7 +166,6 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
           },
           body: JSON.stringify({ tripname, free, id, totaaltrip})
       });
-
       const data = await response.json();
 
       if (response.ok)
