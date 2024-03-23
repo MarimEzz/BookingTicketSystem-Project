@@ -6,7 +6,26 @@
     box-sizing: border-box;
     font-family: "Cairo", sans-serif;
 }
-  
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #5468FF;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+    height: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+	background-color: #5468FF;
+}
 body,
 input {
     font-family: "Cairo", sans-serif;
@@ -417,6 +436,26 @@ opacity: 0.3;
     {
         margin-top:-30px;
     }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
+    }
 }
 
 @media (max-width: 570px) {
@@ -446,17 +485,77 @@ opacity: 0.3;
         bottom: 28%;
         left: 50%;
     }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
+    }
 }
 @media (max-width: 375px) {
     .input-field input 
     {   
         max-width: 323px;
     }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
+    }
 }
 @media (max-width: 320px) {
     .input-field input 
     {   
         max-width: 270px;
+    }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
     }
 }
 @media (min-width:1024px)
@@ -465,11 +564,52 @@ opacity: 0.3;
     {   
         max-width: 350px;
     }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
+    }
 }
+
 @media (min-width:1025px)
 {
     .input-field input 
     {   
         max-width: 444px;
+    }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
     }
 }

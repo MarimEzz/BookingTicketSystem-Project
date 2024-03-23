@@ -2,10 +2,9 @@ const inputf = document.getElementById("free");
 const fpricetrip = document.getElementById("freeprice");
 const total = document.getElementById("total");
 const tripSelect = document.getElementById("tripname");
-const id = document.getElementById("id");
+const inputId = document.getElementById("tripId");
 var poptotal = document.getElementById("ft");
-
-
+var selectedTrip;
 
 var tripData = [];
 var gettrip =new XMLHttpRequest();
@@ -24,7 +23,6 @@ gettrip.addEventListener("readystatechange", function(){
       tripData.forEach(trip => {  //<<<<<<<<<<<<<<<<
       const option = document.createElement("option");
       option.value = trip.ticket_price;
-      id.value=trip.id;
       option.textContent = trip.location;
       tripSelect.appendChild(option);
       });
@@ -32,34 +30,35 @@ gettrip.addEventListener("readystatechange", function(){
       // Function to update price when option changes
       tripSelect.addEventListener("change", () => 
       {
-        const selectedTripId = parseInt(tripSelect.id);
-        const selectedTrip = tripData.find(trip => trip.id === selectedTripId); //<<<<<<<<<
-        if (selectedTrip) 
-        {
+        const selectedTripPrice = parseInt(tripSelect.value);
+        selectedTrip = tripData.trips.find(trip => trip.ticket_price === selectedTripPrice);
+        if (selectedTrip) {
+        inputId.value = `${selectedTrip.tripId}`;
         fpricetrip.value = `${selectedTrip.ticket_price}`;
-        id.value=selectedTrip.id;
-        console.log(selectedTrip);
-        } 
-        else 
-        {
+      } 
+      else 
+      {
         fpricetrip.value = "";
-        }
+      }
       });
 
       // Initialize total with the value of fprice
-      function calcTotal() {
-      total.innerHTML = +fpricetrip.value * +inputf.value;
-      poptotal.innerHTML=total.innerHTML;
+      function calcTotal() 
+      {
+        total.innerHTML = +fpricetrip.value * +inputf.value;
+        poptotal.innerHTML=total.innerHTML;
       }
       // Update total when inputf value changes
       inputf.addEventListener("change", calcTotal);
 
       // Update total when trip otion changes
-      tripSelect.addEventListener("change", () => {
-      // Get the selected trip's price
-      const selectedTripPrice = parseInt(tripSelect.value);
-      fpricetrip.value = selectedTripPrice; 
-      calcTotal(); // Update the total
+      tripSelect.addEventListener("change", () =>
+      {
+        // Get the selected trip's price
+        const selectedTripPrice = parseInt(tripSelect.value);
+        fpricetrip.value = selectedTripPrice; 
+        inputId.value = `${selectedTrip.tripId}`;
+        calcTotal(); // Update the total
       });
   }
   else
@@ -67,9 +66,9 @@ gettrip.addEventListener("readystatechange", function(){
     console.log("connection failed!");
   }
 }); 
-/* 
+/*
 
-// get trip data from dashboard (tripnames, tripprices, image)
+// get trip data from dashboard (tripnames, tripnum"free", image)
 const tripsData = {   //<<<<<<<<<<<<<<
   "trips": [
     {
@@ -100,9 +99,10 @@ tripsData.trips.forEach(trip => {  //<<<<<<<<<<<<<<<<
 
 // Function to update price when option changes
 tripSelect.addEventListener("change", () => {
-  const selectedTripId = parseInt(tripSelect.value);
-  const selectedTrip = tripsData.trips.find(trip => trip.price === selectedTripId);
+  const selectedTripPrice = parseInt(tripSelect.value);
+  selectedTrip = tripsData.trips.find(trip => trip.price === selectedTripPrice);
   if (selectedTrip) {
+    inputId.value = `${selectedTrip.tripId}`;
     fpricetrip.value = `${selectedTrip.price}`;
   } else {
     fpricetrip.value = "";
@@ -122,9 +122,10 @@ tripSelect.addEventListener("change", () => {
   // Get the selected trip's price
   const selectedTripPrice = parseInt(tripSelect.value);
   fpricetrip.value = selectedTripPrice; 
+  inputId.value = `${selectedTrip.tripId}`;
   calcTotal(); // Update the total
-}); */
-
+});
+*/
 
 // Admin change price for free ticket
 /* document.addEventListener('keydown', function(event) {
@@ -153,8 +154,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const tripname = formData.get("tripname");
   const free = formData.get("free");
-  const event_id = formData.get("id");
-
+  const tripId = formData.get("tripId");
   try {
   //action attribute value "EndPoint" >>>> /trip form submission 
       const response = await fetch("http://127.0.0.1:8000/api/userBill", {
@@ -163,7 +163,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ tripname, free,event_id})
+          body: JSON.stringify({ tripname, free, tripId})
       });
 
       const data = await response.json();

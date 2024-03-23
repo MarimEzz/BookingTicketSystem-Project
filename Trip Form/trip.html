@@ -40,7 +40,7 @@
                 <div class="inputfield">
                     <label for="tripname"><bdi>إختر رحلتك :</bdi></label>
                     <select id="tripname" name="tripname" required>
-                        <option>إختر :</option>
+                        <option value="">إختر :</option>
                         <!--For loop-->
                     </select>
                     <label for="free"><bdi>عدد التذاكر :</bdi></label>
@@ -49,7 +49,7 @@
                         <span>EGP</span><input type="text" class="notinput" id="freeprice" value="" readonly> 
                     </div>
                     <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
-                    <input type="" name="id" id="id" value="0" readonly>
+                    <input type="number" name="tripId" id="tripId" value="" hidden>
                     <input type="submit" class="btnsub" value="Submit">
                 </div>
             </div>

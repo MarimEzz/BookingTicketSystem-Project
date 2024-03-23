@@ -1,3 +1,23 @@
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #5468FF;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+    height: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+	background-color: #5468FF;
+}
 body
 {
     margin: 0px;
@@ -117,6 +137,11 @@ nav div
 
 @media only screen and (max-width: 600px) 
 {
+    #logout
+    {
+        font-size: 0.7rem;
+        width: 120px;
+    }
     .graduate h2, .trip h2
     {
         font-size: 19px;
@@ -125,5 +150,25 @@ nav div
     .trip img
     {
         object-position:60%;
+    }
+    ::-webkit-scrollbar-track
+    {
+    -webkit-box-shadow: none;
+    border-radius: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar
+    {
+    width: none;
+    height: none;
+    background-color: none;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    background-color: none;
     }
 }
