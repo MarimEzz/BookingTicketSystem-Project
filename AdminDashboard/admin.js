@@ -217,8 +217,10 @@ document.getElementById("logout").addEventListener("click", logout);
 
 var travelsData = [];
 var travrequest =new XMLHttpRequest();
+var token = localStorage.getItem('token');
 //Here to put API GET for travels data
-travrequest.open("GET","http://127.0.0.1:8000/api/userandbill");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+travrequest.open("GET","http://127.0.0.1:8000/api/travelbills");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+travrequest.setRequestHeader('Authorization', 'Bearer ' + token);
 travrequest.send();
 travrequest.addEventListener("readystatechange", function(){
   if(travrequest.readyState == 4 && travrequest.status == 200)
@@ -226,7 +228,7 @@ travrequest.addEventListener("readystatechange", function(){
     //console.log(travrequest.response); //as string
     //travelsData =JSON.parse(travrequest.response).category;  //category:[{,,,}]
 
-    travelsData =JSON.parse(travrequest.response).users; 
+    travelsData =JSON.parse(travrequest.response); 
     console.log(travelsData); //as Array
     const tableRow = document.querySelector('#tripdata caption');
     if (tableRow) {
@@ -250,12 +252,12 @@ function DisplayTravels()
   {
     box +=
     ` <tr>
-        <td>${travelsData[i].id}</td>
-        <td>${travelsData[i].firstName}</td>
-        <td>${travelsData[i].birthDate}</td>
-        <td>${travelsData[i].username}</td>
-        <td>${travelsData[i].phone}</td>
-        <td>${travelsData[i].age}</td>
+        <td>${travelsData[i].user.id}</td>
+        <td>${travelsData[i].user.name}</td>
+        <td>${travelsData[i].user.nid}</td>
+        <td>${travelsData[i].user.university}</td>
+        <td>${travelsData[i].user.phone}</td>
+        <td>${travelsData[i].number_of_tickets}</td>
         <td><button class="del-trip-btn">حذف</button></td>
       </tr> `
   }
@@ -272,7 +274,8 @@ function DisplayTravels()
 var graduateData = [];
 var gradrequest =new XMLHttpRequest();
 //Here to put API GET for travels data
-gradrequest.open("GET","https://dummyjson.com/carts");//<<<<<<<<<<<<<<<<<<<
+gradrequest.open("GET","http://127.0.0.1:8000/api/gradbills");
+gradrequest.setRequestHeader('Authorization', 'Bearer ' + token);//<<<<<<<<<<<<<<<<<<<
 gradrequest.send();
 gradrequest.addEventListener("readystatechange", function(){
   if(gradrequest.readyState == 4 && gradrequest.status == 200)
