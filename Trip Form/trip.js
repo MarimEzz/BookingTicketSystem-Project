@@ -45,7 +45,7 @@ gettrip.addEventListener("readystatechange", function(){
       // Initialize total with the value of fprice
       function calcTotal() 
       {
-        total.innerHTML = +fpricetrip.value * +inputf.value;
+        total.value = +fpricetrip.value * +inputf.value;
         poptotal.innerHTML=total.innerHTML;
       }
       // Update total when inputf value changes
@@ -155,6 +155,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
   const tripname = formData.get("tripname");
   const free = formData.get("free");
   const id = formData.get("tripId");
+  const totaaltrip = formData.get("total");
   try {
   //action attribute value "EndPoint" >>>> /trip form submission 
       const response = await fetch("http://127.0.0.1:8000/api/userBill", {
@@ -163,7 +164,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ tripname, free, id})
+          body: JSON.stringify({ tripname, free, id, totaaltrip})
       });
 
       const data = await response.json();
@@ -200,7 +201,7 @@ async function logout() {
       if (response.ok) 
       {  //if ok remove token + redirect to login
           localStorage.removeItem("token");
-          window.location.href = "../SignLog/signlog.html";
+          window.location.href = "../index.html";
       } 
       else 
       {

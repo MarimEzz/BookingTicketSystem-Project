@@ -22,7 +22,7 @@
         <img src="../Assets/logow.png" alt="MAM logo">
         <button id="logout" onclick="">تسجيل خروج</button>
     </nav>
-    <a href="../index.html"><button class="back"><svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+    <a href="../Home/Home.html"><button class="back"><svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
       </svg></button></a>
     <section class="popup" id="popup">
@@ -34,7 +34,7 @@
         </ul>
         <bdi>لن يتم تأكيد الحجز إلا بإرسال صوره تحويل المبلغ وسيتم إستلام الكود الخاص بك بعد ذلك.</bdi>
         </h1>
-        <a href="../index.html" ><button class="btnsub"><bdi>حسنا!</bdi></button></a>
+        <a href="../Home/Home.html" ><button class="btnsub"><bdi>حسنا!</bdi></button></a>
     </section>
     <form class="graduate" id="graduate" name="graduateForm" method="post" action="">
         <fieldset>
@@ -53,7 +53,7 @@
                         <!-- use this after log in admin <h2 class="price"><span id="extraprice" contenteditable="false">100</span> EGP</h2>-->
                         <span>EGP</span><input type="text" class="notinput" id="extraprice" value="" readonly>
                     </div>
-                    <h2><bdi><span id="total"> </span>EGP : إجمالي المبلغ </bdi></h2>
+                    <h2><bdi><input name="total" value="" id="total" readonly> EGP : إجمالي المبلغ </bdi></h2>
                     <input type="submit" class="btnsub" value="Submit">
                 </div>
             </div>

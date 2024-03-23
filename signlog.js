@@ -95,7 +95,7 @@ document.getElementById("sign-in-form").addEventListener("submit", async (event)
       if (response.ok)
       {
           localStorage.setItem("token", data.token);
-          window.location.href="../index.html";
+          window.location.href="Home/Home.html";
       } 
       else 
       {
@@ -148,7 +148,7 @@ document.getElementById("sign-up-form").addEventListener("submit", async (event)
       if (response.ok)
       {
         localStorage.setItem("token", data.token);
-        window.location.href="../index.html";
+        window.location.href="Home/Home.html";
       }
       else if (response.status === 409)
       { // if User Already Exists (Created Account Before)

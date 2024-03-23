@@ -197,7 +197,7 @@ async function logout() {
       if (response.ok) 
       {  //if ok remove token + redirect to login
           localStorage.removeItem("token");
-          window.location.href = "../SignLog/signlog.html";
+          window.location.href = "../index.html";
       } 
       else 
       {
@@ -256,6 +256,7 @@ function DisplayTravels()
         <td>${travelsData[i].username}</td>
         <td>${travelsData[i].phone}</td>
         <td>${travelsData[i].age}</td>
+        <td>${travelsData[i].user.total}</td> 
         <td><button class="del-trip-btn">حذف</button></td>
       </tr> `
   }
@@ -311,6 +312,7 @@ function DisplayGraduate()
         <td>${graduateData[i].products[0].phone}</td>
         <td>${graduateData[i].products[0].quantity}</td>
         <td>${graduateData[i].products[0].total}</td>
+        <td>${travelsData[i].user.total}</td> 
         <td><button class="del-graduate-btn">حذف</button></td>
       </tr> `
   }

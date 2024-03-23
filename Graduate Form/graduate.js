@@ -31,7 +31,7 @@ getgradu.addEventListener("readystatechange", function(){
       fprice.value = graduData[0].ticket_price; //<<<<<<<<
 
       // Initialize total with the value of fprice
-      total.innerHTML = +fprice.value;
+      total.value = +fprice.value;
 
       // Update total when inputx value changes
       inputx.addEventListener("change", dynamicExtra);
@@ -40,7 +40,7 @@ getgradu.addEventListener("readystatechange", function(){
           let xval = inputx.value;
           let fval = fprice.value;
           let price = xprice.value;
-          total.innerHTML = +fval + price * xval;
+          total.value = +fval + price * xval;
           poptotal.innerHTML=total.innerHTML;
         }
   }
@@ -118,6 +118,7 @@ document.getElementById("graduate").addEventListener("submit", async (e) => {
   const formData = new FormData(e.target);
   const free = formData.get("free");
   const extra = formData.get("extra");
+  const totaalgradu = formData.get("total");
 
   try {
   //action attribute value "EndPoint" >>>> /graduate form submission 
@@ -126,7 +127,7 @@ document.getElementById("graduate").addEventListener("submit", async (e) => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ free, extra})
+          body: JSON.stringify({ free, extra, totaalgradu})
       });
 
       const data = await response.json();
@@ -163,7 +164,7 @@ async function logout() {
       if (response.ok) 
       {  //if ok remove token + redirect to login
           localStorage.removeItem("token");
-          window.location.href = "../SignLog/signlog.html";
+          window.location.href = "../index.html";
       } 
       else 
       {

@@ -12,7 +12,7 @@ async function logout() {
         if (response.ok) 
         {  //if ok remove token + redirect to login
             localStorage.removeItem("token");
-            window.location.href = "SignLog/signlog.html";
+            window.location.href = "../index.html";
         } 
         else 
         {
