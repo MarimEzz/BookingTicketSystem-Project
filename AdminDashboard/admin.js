@@ -235,17 +235,6 @@ function DisplayGraduate()
   {
     box +=
     ` <tr>
-<<<<<<< Updated upstream
-        <td>${graduateData[i].id}</td>
-        <td>${graduateData[i].products[0].title}</td>
-        <td>${graduateData[i].products[0].discountPercentage}</td>
-        <td>${graduateData[i].products[0].unv}</td>
-        <td>${graduateData[i].products[0].phone}</td>
-        <td>${graduateData[i].products[0].quantity}</td>
-        <td>${graduateData[i].products[0].total}</td>
-        <td>${travelsData[i].total}</td> 
-        <td><button class="del-graduate-btn" onclick="deleteRow(${i})">حذف</button></td>
-=======
         <td>${graduateData[i].user.id}</td>
         <td>${graduateData[i].user.name}</td>
         <td>${graduateData[i].user.nid}</td>
@@ -255,7 +244,6 @@ function DisplayGraduate()
         <td>${graduateData[i].bill_status}</td>
         <td>${graduateData[i].bill_amount}</td> 
         <td><button class="del-graduate-btn">حذف</button></td>
->>>>>>> Stashed changes
       </tr> `
   }
   document.getElementById("displayGraduate").innerHTML = box;
