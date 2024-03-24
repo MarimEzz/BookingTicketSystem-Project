@@ -158,7 +158,7 @@ document.getElementById("graduate").addEventListener("submit", async (e) => {
 async function logout() {
   try {  
       //action attribute value "EndPoint" >>>> /logout
-      const response = await fetch("//////", {
+      const response = await fetch("http://127.0.0.1:8000/api/logout", {
           method: "POST",
           headers: {
               "Authorization": `Bearer ${localStorage.getItem("token")}`
