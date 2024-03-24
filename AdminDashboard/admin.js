@@ -119,7 +119,7 @@ function GraduateToExcel() {
 async function logout() {
   try {  
       //action attribute value "EndPoint" >>>> /logout
-      const response = await fetch("//////", {
+      const response = await fetch("http://127.0.0.1:8000/api/logout", {
           method: "POST",
           headers: {
               "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -235,6 +235,7 @@ function DisplayGraduate()
   {
     box +=
     ` <tr>
+<<<<<<< Updated upstream
         <td>${graduateData[i].id}</td>
         <td>${graduateData[i].products[0].title}</td>
         <td>${graduateData[i].products[0].discountPercentage}</td>
@@ -244,6 +245,17 @@ function DisplayGraduate()
         <td>${graduateData[i].products[0].total}</td>
         <td>${travelsData[i].total}</td> 
         <td><button class="del-graduate-btn" onclick="deleteRow(${i})">حذف</button></td>
+=======
+        <td>${graduateData[i].user.id}</td>
+        <td>${graduateData[i].user.name}</td>
+        <td>${graduateData[i].user.nid}</td>
+        <td>${graduateData[i].user.university}</td>
+        <td>${graduateData[i].user.phone}</td>
+        <td>${graduateData[i].number_of_tickets}</td>
+        <td>${graduateData[i].bill_status}</td>
+        <td>${graduateData[i].bill_amount}</td> 
+        <td><button class="del-graduate-btn">حذف</button></td>
+>>>>>>> Stashed changes
       </tr> `
   }
   document.getElementById("displayGraduate").innerHTML = box;
