@@ -91,27 +91,40 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <bdi><strong>خطأ!</strong> أعد المحاولة مرة أخرى.</bdi>
                     </div>
+                    <p>: تحديد </p>
+                    <div class="radioflex">
+                        <input type="radio" id="trip" name="choose" value="trip">
+                        <label for="trip" class="notreq">رحلة</label><br>
+                    </div>
+                    <div class="radioflex">
+                        <input type="radio" id="gradu" name="choose" value="graduation">
+                        <label for="gradu" class="notreq">حفل تخرج</label><br>
+                    </div>
+                    <br>
+                    <div id="trip-choosen">
+                        <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
+                        <input type="number" min="0" value="0" name="trip-price" id="trip-price">
 
-                    <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
-                    <input type="number" min="0" value="0" name="trip-price" id="trip-price">
+                        <label for="trip-name"><bdi>مكان الرحلة :</bdi></label>
+                        <input type="text" value="" name="trip-name" id="trip-name">
 
-                    <label for="trip-name"><bdi>مكان الرحلة :</bdi></label>
-                    <input type="text" value="" name="trip-name" id="trip-name">
-
-                    <label for="trip-img" class="img-btn">رفع صورة للرحلة
+                        <label for="trip-img" class="img-btn">رفع صورة للرحلة
                         <input type="file" value="" name="trip-img" id="trip-img" accept="image/*">
-                    </label>
-
-                    <label for="gfree-price"><bdi>سعر تذكرة التخرج Free :</bdi></label>
-                    <input type="number" min="0" value="0" name="gfree-price" id="gfree-price">
-
-                    <label for="gextra-price"><bdi>سعر تذكرة التخرج Extra :</bdi></label>
-                    <input type="number" min="0" value="0" name="gextra-price" id="gextra-price">
+                        </label>
+                    </div>
                     
-                    <label for="grade-img" class="img-btn">رفع صورة للتخرج
-                        <input type="file" name="grade-img" id="grade-img" accept="image/*">
-                    </label>
+                    <div id="gradu-choosen">
+                        <label for="gfree-price"><bdi>سعر تذكرة التخرج Free :</bdi></label>
+                        <input type="number" min="0" value="0" name="gfree-price" id="gfree-price">
 
+                        <label for="gextra-price"><bdi>سعر تذكرة التخرج Extra :</bdi></label>
+                        <input type="number" min="0" value="0" name="gextra-price" id="gextra-price">
+                        
+                        <label for="grade-img" class="img-btn">رفع صورة للتخرج
+                            <input type="file" name="grade-img" id="grade-img" accept="image/*">
+                        </label>
+                    </div>
+                    <br>
                     <label for="vod-phone"><bdi>إضافة رقم فودافون كاش :</bdi></label>
                     <input type="number" size="11" value="" title="Enter Vodafone Cash Number" pattern="^010\d{8}$" name="vod-phone" id="vod-phone">
 

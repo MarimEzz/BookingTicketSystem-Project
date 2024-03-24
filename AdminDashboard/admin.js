@@ -45,7 +45,25 @@ function deleteRow(index) {
   DisplayTravels();
 }
 ///////////////////////////////////////
+var tripRadio = document.getElementById("trip");
+var graduRadio = document.getElementById("gradu");
+const tripDiv = document.getElementById("trip-choosen");
+const graduDiv = document.getElementById("gradu-choosen");
 
+tripRadio.addEventListener("change", function() {
+    if (tripRadio.checked) {
+        tripDiv.style.display = "flex";
+        graduDiv.style.display = "none";
+    }
+});
+
+graduRadio.addEventListener("change", function() {
+    if (graduRadio.checked) {
+        tripDiv.style.display = "none";
+        graduDiv.style.display = "flex";
+    }
+});
+//////////////////////////////////////
 document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   e.preventDefault();
   
@@ -58,6 +76,7 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   const gradeimg = formData.get("grade-img");
   const vod_cash = formData.get("vod-phone");
   const etis_cash = formData.get("etis-phone");
+  const chooseTriporgradu = formData.get("choose");
 
   try {
   //action attribute value "EndPoint" >>>> /Admin Controls
@@ -66,7 +85,7 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg, vod_cash, etis_cash})
+          body: JSON.stringify({ chooseTriporgradu, tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg, vod_cash, etis_cash})
       });
 
       const data = await response.json();
@@ -189,7 +208,7 @@ function DisplayTravels()
         <td>${travelsData[i].user.tripname}</td>
         <td>${travelsData[i].user.phone}</td>
         <td>${travelsData[i].number_of_tickets}</td>
-        <td>${travelsData[i].total}</td>
+        <td>${travelsData[i].bill_amount}</td>
         <td><button class="del-trip-btn" onclick="deleteRow(${i})">حذف</button></td>
       </tr> `
   }
