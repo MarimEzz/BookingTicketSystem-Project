@@ -142,11 +142,10 @@ aside .active
 }
 #control form
 {
-    margin: 10px;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 580px;
     align-items: center;
 }
 .admin-body

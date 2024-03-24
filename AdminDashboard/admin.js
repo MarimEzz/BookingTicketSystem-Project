@@ -40,79 +40,10 @@ buttons.forEach(button=> {
 
 //////////////////////////////////
 // delete row buton on each form (trip - graduate)
-/*const tripTable = document.getElementById("tripdata");
-const graduateTable = document.getElementById("graduatedata");
-
-const tripDeleteButtons = document.querySelectorAll('.del-trip-btn');
-tripDeleteButtons.forEach(button => {
-  button.addEventListener('click', deleteTRow);
-});
-
-const graduateDeleteButtons = document.querySelectorAll('.del-graduate-btn');
-graduateDeleteButtons.forEach(button => {
-  button.addEventListener('click', deleteGRow);
-});
-
-function deleteTRow(event) {
-  const button = event.target;
-  const row = button.closest('tr');
-  if (row) {
-    fetch(`/////`, { method: 'DELETE' }) //delete row from travel
-      .then(response => {
-        if (response.ok) {
-          // Remove the row from the table
-          row.remove();
-          updateTripCounter();
-        } else {
-          console.error('Failed to delete trip:', response.statusText);
-        }
-      })
-      .catch(error => {
-        console.error('Error deleting trip:', error);
-      });
-  }
+function deleteRow(index) {
+  travelsData.splice(index, 1);
+  DisplayTravels();
 }
-
-function deleteGRow(event) {
-  const button = event.target;
-  const row = button.closest('tr');
-  if (row) {
-    fetch(`/////`, { method: 'DELETE' }) //delete row from graduate
-      .then(response => {
-        if (response.ok) {
-          // Remove the row from the table
-          row.remove();
-          updateGraduateCounter();
-        } else {
-          console.error('Failed to delete Graduate:', response.statusText);
-        }
-      })
-      .catch(error => {
-        console.error('Error deleting Graduate:', error);
-      });
-  }
-}
-// update row counter when delete row
-function updateTripCounter() {
-  const rows = tripTable.querySelectorAll('tr');
-  for (let i = 1; i < rows.length; i++) {
-    const cell = rows[i].querySelector('td:first-child');
-    if (cell) {
-      cell.textContent = i;
-    }
-  }
-}
-updateTripCounter();
-function updateGraduateCounter() {
-  const rows = graduateTable.querySelectorAll('tr');
-  for (let i = 1; i < rows.length; i++) {
-    const cell = rows[i].querySelector('td:first-child');
-    if (cell) {
-      cell.textContent = i;
-    }
-  }
-}
-updateGraduateCounter();*/
 ///////////////////////////////////////
 
 document.getElementById("formcontrol").addEventListener("submit", async (e) => {
@@ -125,6 +56,8 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   const graduate_free = formData.get("gfree-price");
   const graduate_extra = formData.get("gextra-price");
   const gradeimg = formData.get("grade-img");
+  const vod_cash = formData.get("vod-phone");
+  const etis_cash = formData.get("etis-phone");
 
   try {
   //action attribute value "EndPoint" >>>> /Admin Controls
@@ -133,7 +66,7 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg})
+          body: JSON.stringify({ tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg, vod_cash, etis_cash})
       });
 
       const data = await response.json();
@@ -145,7 +78,7 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
       }
       else if (response.status === 401)
       { // if Admin Unauthorized access go to login
-        window.location.href="../SignLog/singlog.html";
+        window.location.href="../index.html";
       }
       else 
       {
@@ -228,12 +161,9 @@ travrequest.addEventListener("readystatechange", function(){
     //console.log(travrequest.response); //as string
     //travelsData =JSON.parse(travrequest.response).category;  //category:[{,,,}]
 
-    travelsData =JSON.parse(travrequest.response); 
+    travelsData =JSON.parse(travrequest.response);
     console.log(travelsData); //as Array
-    const tableRow = document.querySelector('#tripdata caption');
-    if (tableRow) {
-        tableRow.remove();
-    }
+    
     DisplayTravels(); //display data
   }
   else
@@ -256,9 +186,11 @@ function DisplayTravels()
         <td>${travelsData[i].user.name}</td>
         <td>${travelsData[i].user.nid}</td>
         <td>${travelsData[i].user.university}</td>
+        <td>${travelsData[i].user.tripname}</td>
         <td>${travelsData[i].user.phone}</td>
         <td>${travelsData[i].number_of_tickets}</td>
-        <td><button class="del-trip-btn">حذف</button></td>
+        <td>${travelsData[i].total}</td>
+        <td><button class="del-trip-btn" onclick="deleteRow(${i})">حذف</button></td>
       </tr> `
   }
   document.getElementById("displayTrip").innerHTML = box;
@@ -283,12 +215,8 @@ gradrequest.addEventListener("readystatechange", function(){
     //console.log(gradrequest.response); //as string
     //graduateData =JSON.parse(gradrequest.response).category;  //category:[{,,,}]
 
-    graduateData =JSON.parse(gradrequest.response).carts; //<<<<<<<<<<<<<
+    graduateData =JSON.parse(gradrequest.response); //<<<<<<<<<<<<<
     console.log(graduateData); //as Array
-    const tableRow = document.querySelector('#graduatedata caption');
-    if (tableRow) {
-        tableRow.remove();
-    }
     DisplayGraduate(); //display data
   }
   else
@@ -314,8 +242,8 @@ function DisplayGraduate()
         <td>${graduateData[i].products[0].phone}</td>
         <td>${graduateData[i].products[0].quantity}</td>
         <td>${graduateData[i].products[0].total}</td>
-        <td>${travelsData[i].user.total}</td> 
-        <td><button class="del-graduate-btn">حذف</button></td>
+        <td>${travelsData[i].total}</td> 
+        <td><button class="del-graduate-btn" onclick="deleteRow(${i})">حذف</button></td>
       </tr> `
   }
   document.getElementById("displayGraduate").innerHTML = box;

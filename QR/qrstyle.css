@@ -7,7 +7,7 @@ body
     font-family: "Cairo", sans-serif;
     font-weight:500;
 }
-.container
+.containerr
 {
     display: flex;
     justify-content: space-around;
@@ -23,9 +23,18 @@ body
     width: 27%;
     height: 360px;
     padding: 30px;
-    margin: 20px;
+    margin: -4px;
+    margin-top: 15px;
     border-radius: 23px;
     border: 2px solid #5468FF;
+}
+#qr
+{
+    margin-top: -125px;
+}
+#qr img {
+    margin-top: -125px;
+    width: 300px;
 }
 #free
 {
@@ -67,7 +76,7 @@ button:active
     box-shadow: inset 0px 3px 7px #3c4fe0;
     transform: translateY(2px);
 }
-input
+input:not(input[type="radio"]), select
 {
     width: auto;
     color: rgb(36, 35, 42);
@@ -82,12 +91,12 @@ input
     transition: all 0.1s ease 0s;
     text-align: end;
 }
-input:focus
+input:not(input[type="radio"]):focus
 {
     border: 2px solid #5468FF;
     outline: none;
 }
-label::after
+label::after, p::after
 {
     content: "*";
     color: #5468FF;
@@ -96,28 +105,57 @@ label::after
     font-weight: bolder;
     padding: 5px;
 }
+p
+{
+    margin: 0px 5px;
+}
+label.notreq::after {
+    content: none;
+}
 .uline
 {
     color: #5468FF;
 }
 .logo
 {
-    width: 73px;
-    height: 73px;
-    position: absolute;
-    left: 17%;
-    bottom: 18%;
+    width: 117px;
+    height: 117px;
+    position: relative;
+    top: 50%;
+    right: 50%;
+    transform: translate(45%, -50%);
 }
-
+#trip-choosen, #gradu-choosen
+{
+    display: none; /*flex*/
+    flex-direction: column;
+}
+.radioflex
+{
+    display: flex;
+    justify-content: end;
+    flex-direction: row-reverse;
+}
+#msg-war
+{
+    display: none;
+    flex-direction: row-reverse;
+}
+input[type="radio"]
+{
+    margin-left: 10px;
+}
 @media only screen and (max-width: 768px) 
 {
-    .container
+    .containerr
     {
         flex-direction: column-reverse;
     }
     .qr
     {
-        width: 80%;
+        width: 92%;
+        height: 260px;
+        padding: 15px;
     }
     .data
     {
@@ -125,11 +163,12 @@ label::after
     }
     .logo
     {
-        display: flex;  
-        position: absolute;
-        bottom: -95%;
-        left: 50%;
-        transform: translate(-50%);
+        width: 117px;
+        height: 117px;
+        position: relative;
+        top: 50%;
+        right: 50%;
+        transform: translate(45%, -50%);
     }
     .btn
     {
@@ -140,5 +179,10 @@ label::after
         width: 100%;
         margin-bottom: 10px;
     }
-
+    #qr img
+    {
+        width: 240px;
+        height: 240px;
+        margin: auto;
+    }
 }

@@ -5,6 +5,8 @@ const tripSelect = document.getElementById("tripname");
 const inputId = document.getElementById("tripId");
 var poptotal = document.getElementById("ft");
 var selectedTrip;
+const vodcash = document.getElementById("vod-cash");
+const etiscash = document.getElementById("etis-cash");
 
 var tripData = [];
 var gettrip =new XMLHttpRequest();
@@ -26,6 +28,10 @@ gettrip.addEventListener("readystatechange", function(){
       option.textContent = trip.location;
       tripSelect.appendChild(option);
       });
+
+      // get Cash phone
+      vodcash.textContent = tripData[0].vod__cash; //<<<<<<<<<<<<<<
+      etiscash.textContent = tripData[0].etis__cash; //<<<<<<<<<<<<<
 
       // Function to update price when option changes
       tripSelect.addEventListener("change", () => 
@@ -174,8 +180,8 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
       }
       else 
       {
-        /* const errormsg = document.getElementById("errormsg");
-        errormsg.style.display = "block"; */
+        const errormsg = document.getElementById("errormsg");
+        errormsg.style.display = "block"; 
         console.error("Submission failed:", data.message);
       }
   } 

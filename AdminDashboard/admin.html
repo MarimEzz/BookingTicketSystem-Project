@@ -39,8 +39,9 @@
                             <th>No.</th>
                             <th>الإسم الرباعي</th>
                             <th>الرقم القومي</th>
-                            <th>إسم الكلية</th>
-                            <th>رقم الهاتف</th>
+                            <th>الكلية</th>
+                            <th>الرحلة</th>
+                            <th>الهاتف</th>
                             <th>عدد التذاكر</th>
                             <th>إجمالي السعر</th>
                             <th>Action</th>
@@ -64,8 +65,8 @@
                             <th>No.</th>
                             <th>الإسم الرباعي</th>
                             <th>الرقم القومي</th>
-                            <th>إسم الكلية</th>
-                            <th>رقم الهاتف</th>
+                            <th>الكلية</th>
+                            <th>الهاتف</th>
                             <th><bdi>عدد التذاكر Free </bdi></th>
                             <th><bdi>عدد التذاكر Extra </bdi></th>
                             <th>إجمالي السعر</th>
@@ -110,6 +111,12 @@
                     <label for="grade-img" class="img-btn">رفع صورة للتخرج
                         <input type="file" name="grade-img" id="grade-img" accept="image/*">
                     </label>
+
+                    <label for="vod-phone"><bdi>إضافة رقم فودافون كاش :</bdi></label>
+                    <input type="number" size="11" value="" title="Enter Vodafone Cash Number" pattern="^010\d{8}$" name="vod-phone" id="vod-phone">
+
+                    <label for="etis-phone"><bdi>إضافة رقم إتصالات كاش :</bdi></label>
+                    <input type="number" size="11" value="" title="Enter Etisalat Cash Number" pattern="^011\d{8}$" name="etis-phone" id="etis-phone">
 
                     <input type="submit" class="btnsub" value="تأكيد">
                 </form>

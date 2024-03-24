@@ -1,73 +1,121 @@
-var fulln = document.getElementById("fn");
-var natiomalid = document.getElementById("sn");
-var univ = document.getElementById("un");
-var phone = document.getElementById("phone");
-var ex = document.getElementById("extra");
-fulln.setCustomValidity("Please Enter Your Full Name.");
-natiomalid.setCustomValidity("Please Enter Your National ID (14 digits).");
-univ.setCustomValidity("Please Enter Your University Name.");
-phone.setCustomValidity("Enter Your Phone Number (11 digits), Support 010, 011, 012, and 015.");
-ex.setCustomValidity("Maximum 3 only.");
-fulln.addEventListener("input", function() {
-    fulln.setCustomValidity("");
-  });
-  natiomalid.addEventListener("input", function() {
-    natiomalid.setCustomValidity("");
-  });
-  univ.addEventListener("input", function() {
-    univ.setCustomValidity("");
-  });
-  phone.addEventListener("input", function() {
-    phone.setCustomValidity("");
-  });
-  ex.addEventListener("input", function() {
-    ex.setCustomValidity("");
-  });
-
 var fn = document.getElementById("fn");
 var sn = document.getElementById("sn");
 var un = document.getElementById("un");
 var phone = document.getElementById("phone");
 var free = document.getElementById("free");
 var extra = document.getElementById("extra");
+const tripSelect = document.getElementById("tripname");
+var ticnum = document.getElementById("ticnum");
+var total = document.getElementById("total");
+var pho_pattern = /^01[0-2,5]\d{8}$/;
+var msg_war = document.getElementById("msg-war");
+var msg = document.getElementById("msg");
+
+const tripData = []; //<<<<<<<<<<<<<<
+
+var gettrip =new XMLHttpRequest();
+//Here to put API GET for travels data
+gettrip.open("GET","http://127.0.0.1:8000/api/travel");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+gettrip.send();
+gettrip.addEventListener("readystatechange", function(){
+  if(gettrip.readyState == 4 && gettrip.status == 200)
+  {
+    //console.log(gettrip.response); //as string
+    //tripData =JSON.parse(gettrip.response).category;  //category:[{,,,}]
+
+    tripData =JSON.parse(gettrip.response);
+    console.log(tripData); //as Array
+      // Populate select options
+      tripData.forEach(trip => {  //<<<<<<<<<<<<<<<<
+      const option = document.createElement("option");
+      option.textContent = trip.location;
+      tripSelect.appendChild(option);
+      });
+  }
+});
+
+var tripRadio = document.getElementById("trip");
+var graduRadio = document.getElementById("gradu");
+const tripDiv = document.getElementById("trip-choosen");
+const graduDiv = document.getElementById("gradu-choosen");
+
+tripRadio.addEventListener("change", function() {
+    if (tripRadio.checked) {
+        tripDiv.style.display = "flex";
+        graduDiv.style.display = "none";
+    }
+});
+
+graduRadio.addEventListener("change", function() {
+    if (graduRadio.checked) {
+        tripDiv.style.display = "none";
+        graduDiv.style.display = "flex";
+    }
+});
 
 //Genetate QR Code
 function generate()
 {
-        var qr = document.getElementById("qr");
-        qr.innerHTML = "";
-        const href ='"'+ fn.value +', '+ sn.value+', '+ un.value +', '+phone.value+', Free:'+free.value+', Extra:'+extra.value+'"';
-        const size = 360;
-        new QRCode(qr , {
-            text: href,
-            width: size,
-            height: size,
-            colorDark: "#040404",
-            colorLight: "#e9eef4"
-        })
-}
+    if(fn.value.length <= 10)
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال الإسم رباعي";
+    }
+    else if(sn.value.length != 14)
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال الرقم القومي 14 رقم";
+    }
+    else if(un.value.length < 3)
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال إسم الجامعة";
+    }
+    else if(!pho_pattern.test(phone.value))
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال رقم الهاتف, يدعم 010, 011, 012, 015";
+    }
+    else if(tripRadio.checked && tripSelect.value == "")
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال مكان الرحلة";
+    }
+    else if(tripRadio.checked && ticnum.value == 0)
+    {
+      msg_war.style.display="flex";
+      msg.textContent="يرجى إدخال عدد التذاكر";
+    }
+    else if(graduRadio.checked && extra.value > 3) 
+    {
+      msg_war.style.display="flex";
+      msg.textContent="أقصى عدد 3";
+    }
+    else
+    {
+      var qr = document.getElementById("qr");
+      qr.innerHTML = "";
+      var href;
+      if (tripRadio.checked)
+      {
+        href ='"'+ fn.value +', '+ sn.value+', '+ un.value +', '+phone.value+ ', Trip: '+ tripSelect.value +', TicketNum: '+ ticnum.value +', Total: '+ total.value +'"';
+      }
+      else if(graduRadio.checked)
+      {
+        href ='"'+ fn.value +', '+ sn.value+', '+ un.value +', '+phone.value+', Free: '+free.value+', Extra: '+extra.value+', Total: '+ total.value +'"';
+      }
+      const size = 360;
+      new QRCode(qr , {
+          text: href,
+          width: size,
+          height: size,
+          colorDark: "#040404",
+          colorLight: "#e9eef4"
+      })
 
-// Initialize an array to store national IDs
-let nationalIds = JSON.parse(localStorage.getItem("nationalIds")) || [];
-// Function to add a new national ID to the array
-function addNationalId(nationalId) {
-  if (!nationalIds.includes(nationalId)) {
-      nationalIds.push(nationalId);
-      localStorage.setItem("nationalIds", JSON.stringify(nationalIds));
-      console.log("National ID added:", nationalId);
-      generate();
-  } else {
-      console.log("National ID already exists:", nationalIds);
-      alert("This National ID has already been submitted!");
-  }
+    }
+        
 }
-
-// Event listener for form submission
-function filterNID() {
-  event.preventDefault(); // Prevent form submission
-  let nationalId = document.getElementById("sn").value;
-  addNationalId(nationalId);
-};
 
 //Download QR Code PNG
 var link = document.getElementById("download");
@@ -81,32 +129,3 @@ function pngdown() {
     // Copy that to the download link
     link.href = qrr;
 };
-//Only user can submit once by filtering National ID
-
-
-
-
-
-// Output the stored national IDs
-console.log("Stored National IDs:", nationalIds);
-//localStorage.clear(); //to delete all data
-//localStorage.removeItem('key'); //to delete a specific ID
-
-
-
-/*
->>>  //this is not the right way, user van refresh page or close window and submit again while all data on array reset!!
-let inputArray = [];
-document.getElementById("data").addEventListener("submit", function(event) {
-    event.preventDefault();
-    let inputValue = document.getElementById("sn").value;
-    if (!inputArray.includes(inputValue)) {
-        inputArray.push(inputValue);
-        console.log("Updated array:", inputArray);
-    } else {
-        alert("This National ID has already been submitted!");
-    }
-    document.getElementById("sn").value = "";
-});
-
-*/

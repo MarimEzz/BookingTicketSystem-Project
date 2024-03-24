@@ -12,6 +12,8 @@ const xprice = document.getElementById("extraprice");
 const fprice = document.getElementById("freeprice");
 const total = document.getElementById("total");
 var poptotal = document.getElementById("ft");
+const vodcash = document.getElementById("vod-cash");
+const etiscash = document.getElementById("etis-cash");
 
 
 var graduData = [];
@@ -24,14 +26,17 @@ getgradu.addEventListener("readystatechange", function(){
   {
     //console.log(getgradu.response); //as string
     //graduData =JSON.parse(getgradu.response).category;  //category:[{,,,}]
-
     graduData =JSON.parse(getgradu.response); 
     console.log(graduData); //as Array
       xprice.value = graduData[0].extra_price; //<<<<<<<
       fprice.value = graduData[0].ticket_price; //<<<<<<<<
-
+      
       // Initialize total with the value of fprice
       total.value = +fprice.value;
+
+      // get Cash phone
+      vodcash.textContent = graduData[0].vod__cash; //<<<<<<<<<<<<<<
+      etiscash.textContent = graduData[0].etis__cash; //<<<<<<<<<<<<<
 
       // Update total when inputx value changes
       inputx.addEventListener("change", dynamicExtra);
