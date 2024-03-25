@@ -64,29 +64,56 @@ graduRadio.addEventListener("change", function() {
     }
 });
 //////////////////////////////////////
+/*
+document.getElementById("formcontrol").addEventListener("submit",function(e)
+{
+  e.preventDefault();
+  const formcontroldata = new FormData(this);
+  //action attribute value /submit
+  fetch("//////////////",{ //<<<<<<<<<<<<
+    method: "POST",
+    body:formcontroldata
+  }).then(response=>{
+    if(!response.ok)
+    {
+      throw new Error("Network response was not ok")
+    }
+    return response.json();
+  }).then(data=>{
+    console.log("form submitted successfully:",data);
+  }).catch(error=>{
+    console.error("there was a problem with form submission:",error);
+  });
+});*/
+
 document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   e.preventDefault();
   
   const formData = new FormData(e.target);
   const tripprice = formData.get("trip-price");
   const tripname = formData.get("trip-name");
-  const tripimg = formData.get("trip-img");
   const graduate_free = formData.get("gfree-price");
   const graduate_extra = formData.get("gextra-price");
-  const gradeimg = formData.get("grade-img");
   const vod_cash = formData.get("vod-phone");
   const etis_cash = formData.get("etis-phone");
   const chooseTriporgradu = formData.get("choose");
 
+  const tripimg = document.getElementById("tripimg").files[0];
+  const gradeimg = document.getElementById("gradeimg").files[0];
+  formData.append("tripimg", tripimg);
+  formData.append("gradeimg", gradeimg);
+
   try {
   //action attribute value "EndPoint" >>>> /Admin Controls
-      const response = await fetch("/////////", {
+      const response = await fetch("/////////////", {
           method: "POST",
-          headers: {
+          body: formData 
+         /* headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({ chooseTriporgradu, tripprice, tripname, tripimg, graduate_free, graduate_extra, gradeimg, vod_cash, etis_cash})
-      });
+          body: JSON.stringify({ chooseTriporgradu, tripprice, tripname, graduate_free, graduate_extra, vod_cash, etis_cash})
+      */
+        });
 
       const data = await response.json();
 
@@ -182,7 +209,7 @@ travrequest.addEventListener("readystatechange", function(){
 
     travelsData =JSON.parse(travrequest.response);
     console.log(travelsData); //as Array
-    
+    document.getElementById("tdefault").style.display = "none";
     DisplayTravels(); //display data
   }
   else
@@ -236,6 +263,7 @@ gradrequest.addEventListener("readystatechange", function(){
 
     graduateData =JSON.parse(gradrequest.response); //<<<<<<<<<<<<<
     console.log(graduateData); //as Array
+    document.getElementById("gdefault").style.display = "none";
     DisplayGraduate(); //display data
   }
   else
