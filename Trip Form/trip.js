@@ -159,9 +159,9 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
   
   const formData = new FormData(e.target);
   const tripname = formData.get("tripname");
-  const free = formData.get("free");
-  const id = formData.get("tripId");
-  const totaaltrip = formData.get("total");
+  const number_of_tickets = formData.get("free");
+  const event_id = formData.get("tripId");
+  const bill_amount = formData.get("total");
   try {
   //action attribute value "EndPoint" >>>> /trip form submission 
       const response = await fetch("http://127.0.0.1:8000/api/userBill", {
@@ -170,7 +170,7 @@ document.getElementById("trip").addEventListener("submit", async (e) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ tripname, free, id, totaaltrip})
+          body: JSON.stringify({ tripname, number_of_tickets, event_id, bill_amount})
       });
       const data = await response.json();
 
