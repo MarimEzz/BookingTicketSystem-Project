@@ -29,10 +29,6 @@ gettrip.addEventListener("readystatechange", function(){
       tripSelect.appendChild(option);
       });
 
-      // get Cash phone
-      vodcash.textContent = tripData[0].vod__cash; //<<<<<<<<<<<<<<
-      etiscash.textContent = tripData[0].etis__cash; //<<<<<<<<<<<<<
-
       // Function to update price when option changes
       tripSelect.addEventListener("change", () => 
       {
@@ -41,6 +37,11 @@ gettrip.addEventListener("readystatechange", function(){
         if (selectedTrip) {
         inputId.value = `${selectedTrip.id}`;
         fpricetrip.value = `${selectedTrip.ticket_price}`;
+        // get Cash phone
+        vodcash.textContent = selectedTrip.vod__cash;
+        etiscash.textContent = selectedTrip.etis__cash;
+        // get image
+        document.getElementById("imgtripform").src = selectedTrip.image;
       } 
       else 
       {
@@ -64,6 +65,11 @@ gettrip.addEventListener("readystatechange", function(){
         const selectedTripPrice = parseInt(tripSelect.value);
         fpricetrip.value = selectedTripPrice; 
         inputId.value = `${selectedTrip.id}`;
+        // update Cash phone
+        vodcash.textContent = selectedTrip.vod__cash;
+        etiscash.textContent = selectedTrip.etis__cash;
+        // update img
+        document.getElementById("imgtripform").src = selectedTrip.image;
         calcTotal(); // Update the total
       });
   }
