@@ -6,6 +6,7 @@ const inputId = document.getElementById("tripId");
 var poptotal = document.getElementById("ft");
 var selectedTrip;
 const vodcash = document.getElementById("vod-cash");
+const path="http://127.0.0.1:8000/images/";
 const etiscash = document.getElementById("etis-cash");
 
 var tripData = [];
@@ -41,7 +42,9 @@ gettrip.addEventListener("readystatechange", function(){
         vodcash.textContent = selectedTrip.vod__cash;
         etiscash.textContent = selectedTrip.etis__cash;
         // get image
-        document.getElementById("imgtripform").src = selectedTrip.image;
+        const imagepath=selectedTrip.image;
+        document.getElementById("imgtripform").src =  path+imagepath;
+        console.log(document.getElementById("imgtripform").src)
       } 
       else 
       {
@@ -69,7 +72,7 @@ gettrip.addEventListener("readystatechange", function(){
         vodcash.textContent = selectedTrip.vod__cash;
         etiscash.textContent = selectedTrip.etis__cash;
         // update img
-        document.getElementById("imgtripform").src = selectedTrip.image;
+        document.getElementById("imgtripform").src = path.selectedTrip.image;
         calcTotal(); // Update the total
       });
   }
