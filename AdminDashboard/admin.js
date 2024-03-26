@@ -77,6 +77,7 @@ document.getElementById("formcontrol").addEventListener("submit",function(e)
 
   console.log(image);
   const extra_price = formData.get("gextra-price");
+  const free_guests = formData.get("free_guests");
   const vod__cash = formData.get("vod-phone");
   const etis__cash = formData.get("etis-phone");
   const category = formData.get("choose");
@@ -106,11 +107,12 @@ document.getElementById("formcontrol").addEventListener("submit",function(e)
       `Content-Disposition: form-data; name="etis__cash"\r\n\r\n${etis__cash}\r\n`,
       `--${boundary}\r\n`,
       `Content-Disposition: form-data; name="category"\r\n\r\n${category}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="free_guests"\r\n\r\n${free_guests}\r\n`,
       `--${boundary}--\r\n`,
     ].flat(),
     ),
   }).then(response=>{
-    console.log(JSON.stringify({ ticket_price, location, image, extra_price, vod__cash, etis__cash, category}));
     if(!response.ok)
     {
       throw new Error("Network response was not ok")
