@@ -325,6 +325,7 @@ function DisplayGraduate()
         <td>${graduateData[i].user.nid}</td>
         <td>${graduateData[i].user.university}</td>
         <td>${graduateData[i].user.phone}</td>
+        <td>${graduateData[i].event.free_guests}</td>
         <td>${graduateData[i].number_of_tickets}</td>
         <td>${graduateData[i].bill_status}</td>
         <td>${graduateData[i].bill_amount}</td> 

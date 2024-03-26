@@ -11,7 +11,7 @@ var pho_pattern = /^01[0-2,5]\d{8}$/;
 var msg_war = document.getElementById("msg-war");
 var msg = document.getElementById("msg");
 
-const tripData = []; //<<<<<<<<<<<<<<
+var tripData = []; //<<<<<<<<<<<<<<
 
 var gettrip =new XMLHttpRequest();
 //Here to put API GET for travels data

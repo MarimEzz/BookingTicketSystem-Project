@@ -25,7 +25,7 @@ gettrip.addEventListener("readystatechange", function(){
       // Populate select options
       tripData.forEach(trip => {  //<<<<<<<<<<<<<<<<
       const option = document.createElement("option");
-      option.value = trip.ticket_price;
+      option.value = trip.id;
       option.textContent = trip.location;
       tripSelect.appendChild(option);
       });
@@ -34,17 +34,15 @@ gettrip.addEventListener("readystatechange", function(){
       tripSelect.addEventListener("change", () => 
       {
         const selectedTripPrice = parseInt(tripSelect.value);
-        selectedTrip = tripData.find(trip => trip.ticket_price === selectedTripPrice);
+        selectedTrip = tripData.find(trip => trip.id === selectedTripPrice);
         if (selectedTrip) {
-        inputId.value = `${selectedTrip.id}`;
-        fpricetrip.value = `${selectedTrip.ticket_price}`;
+        inputId.value = selectedTrip.id;
+        fpricetrip.value = selectedTrip.ticket_price;
         // get Cash phone
         vodcash.textContent = selectedTrip.vod__cash;
         etiscash.textContent = selectedTrip.etis__cash;
         // get image
-        const imagepath=selectedTrip.image;
-        document.getElementById("imgtripform").src =  path+imagepath;
-        console.log(document.getElementById("imgtripform").src)
+        document.getElementById("imgtripform").src = selectedTrip.image;
       } 
       else 
       {
@@ -66,13 +64,13 @@ gettrip.addEventListener("readystatechange", function(){
       {
         // Get the selected trip's price
         const selectedTripPrice = parseInt(tripSelect.value);
-        fpricetrip.value = selectedTripPrice; 
+        fpricetrip.value = selectedTrip.ticket_price; 
         inputId.value = `${selectedTrip.id}`;
         // update Cash phone
         vodcash.textContent = selectedTrip.vod__cash;
         etiscash.textContent = selectedTrip.etis__cash;
         // update img
-        document.getElementById("imgtripform").src = path.selectedTrip.image;
+        document.getElementById("imgtripform").src = path+selectedTrip.image;
         calcTotal(); // Update the total
       });
   }
