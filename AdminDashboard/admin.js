@@ -67,56 +67,50 @@ graduRadio.addEventListener("change", function() {
 document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   
   e.preventDefault();
-  const formData = new FormData(e.target);
-  const tripprice = formData.get("trip-price");
-  const tripname = formData.get("trip-name");
-  const graduate_free = formData.get("gfree-price");
-  const graduate_extra = formData.get("gextra-price");
-  const vod_cash = formData.get("vod-phone");
-  const etis_cash = formData.get("etis-phone");
-  const chooseTriporgradu = formData.get("choose");
 
-  const tripimg = document.getElementById("tripimg").files[0];
-  const gradeimg = document.getElementById("gradeimg").files[0];
-  formData.append("tripimg", tripimg);
-  formData.append("gradeimg", gradeimg);
-
-  try {
-  //action attribute value "EndPoint" >>>> /Admin Controls
-      const response = await fetch("/////////////", {
-          method: "POST",
-          body: formData 
-         /* headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ chooseTriporgradu, tripprice, tripname, graduate_free, graduate_extra, vod_cash, etis_cash})
-      */
-        });
-
-      const data = await response.json();/*
+      const data = await response.json();
   var ticket_price = formData.get("trip-price");
   const location = formData.get("trip-name");
-  const image = formData.get("trip-img");
+
+  const image = document.getElementById("tripimg").files[0];
+
+
   console.log(image);
-  if (ticket_price == "") {
-    ticket_price = formData.get("gfree-price");
-  }
   const extra_price = formData.get("gextra-price");
-  const gradeimg = formData.get("grade-img");
   const vod__cash = formData.get("vod-phone");
   const etis__cash = formData.get("etis-phone");
   const category = formData.get("choose");
   const formcontroldata = new FormData(this);
   //action attribute value /submit
+  const boundary = `-------${Date.now().toString(16)}`;
   fetch("http://127.0.0.1:8000/api/event",{ //<<<<<<<<<<<<
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": `multipart/form-data; boundary=${boundary}`,
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category}),
-    
+    body: new Blob([
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="ticket_price"\r\n\r\n${ticket_price}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="location"\r\n\r\n${location}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="image"; filename="${image.name}"\r\n`,
+      `Content-Type: ${image.type}\r\n\r\n`,
+      image,
+      `\r\n--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="extra_price"\r\n\r\n${extra_price}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="vod__cash"\r\n\r\n${vod__cash}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="etis__cash"\r\n\r\n${etis__cash}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="category"\r\n\r\n${category}\r\n`,
+      `--${boundary}--\r\n`,
+    ].flat(),
+    ),
   }).then(response=>{
+    console.log(JSON.stringify({ ticket_price, location, image, extra_price, vod__cash, etis__cash, category}));
     if(!response.ok)
     {
       throw new Error("Network response was not ok")
@@ -130,107 +124,6 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
 });
 
 //////////////////////////////////////
-// document.getElementById("formcontrol").addEventListener("submit", async (e) => {
-//   e.preventDefault();
-  
-//   const formData = new FormData(e.target);
-//   var ticket_price = formData.get("trip-price");
-//   const location = formData.get("trip-name");
-//   const image = formData.get("trip-img");
-//   if (ticket_price == "") {
-//     ticket_price = formData.get("gfree-price");
-//   }
-//   const extra_price = formData.get("gextra-price");
-//   const gradeimg = formData.get("grade-img");
-//   const vod__cash = formData.get("vod-phone");
-//   const etis__cash = formData.get("etis-phone");
-//   const category = formData.get("choose");
-
-
-//   try {
-//   //action attribute value "EndPoint" >>>> /Admin Controls
-//       const response = await fetch("http://127.0.0.1:8000/api/event", {
-//           method: "POST",
-//           headers: {
-//               "Content-Type": "application/json",
-//               Authorization : `Bearer ${localStorage.getItem("token")}`
-//           },
-//           body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category})
-//       });
-//       console.log(response);
-//       const data = await response.json();*/
-
-      if (response.ok)
-      {
-        const successmsg = document.getElementById("successmsg");
-        successmsg.style.display = "block";      
-      }
-      else if (response.status === 401)
-      { // if Admin Unauthorized access go to login
-        window.location.href="../index.html";
-      }
-      else 
-      {
-        const errormsg = document.getElementById("errormsg");
-        errormsg.style.display = "block";
-        console.error("Submission failed:", data.message);
-      }
-    }
-    catch (error) {
-      console.error("Error during submission:", error);
-  }
-});
-//////////////////////////////////////
-// document.getElementById("formcontrol").addEventListener("submit", async (e) => {
-//   e.preventDefault();
-  
-//   const formData = new FormData(e.target);
-//   var ticket_price = formData.get("trip-price");
-//   const location = formData.get("trip-name");
-//   const image = formData.get("trip-img");
-//   if (ticket_price == "") {
-//     ticket_price = formData.get("gfree-price");
-//   }
-//   const extra_price = formData.get("gextra-price");
-//   const gradeimg = formData.get("grade-img");
-//   const vod__cash = formData.get("vod-phone");
-//   const etis__cash = formData.get("etis-phone");
-//   const category = formData.get("choose");
-
-
-//   try {
-//   //action attribute value "EndPoint" >>>> /Admin Controls
-//       const response = await fetch("http://127.0.0.1:8000/api/event", {
-//           method: "POST",
-//           headers: {
-//               "Content-Type": "application/json",
-//               Authorization : `Bearer ${localStorage.getItem("token")}`
-//           },
-//           body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category})
-//       });
-//       console.log(response);
-//       const data = await response.json();
-
-//       if (response.ok)
-//       {
-//         const successmsg = document.getElementById("successmsg");
-//         successmsg.style.display = "block";      
-//       }
-//       else if (response.status === 401)
-//       { // if Admin Unauthorized access go to login
-//         window.location.href="../index.html";
-//       }
-//       else 
-//       {
-//         const errormsg = document.getElementById("errormsg");
-//         errormsg.style.display = "block";
-//         console.error("Submission failed:", data.message);
-//       }
-//   } 
-//   catch (error) {
-//       console.error("Error during submission:", error);
-//   }
-// });
 
 /////////////////////////////////////
 // Added Button To Download dataTrip on Excle File

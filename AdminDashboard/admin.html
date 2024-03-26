@@ -81,7 +81,7 @@
             </div>
             <div id="control">
                 
-                <form action="http://127.0.0.1:8000/api/event" method="post" name="formcontrol" id="formcontrol">
+                <form action="http://127.0.0.1:8000/api/event" method="post" name="formcontrol" id="formcontrol" enctype="multipart/form-data">
 
                     <div id="successmsg" class="alert alert-info alert-dismissible fade show">
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -102,29 +102,27 @@
                     </div>
                     <br>
                     <div id="trip-choosen">
-                        <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
-                        <input type="number" min="0" value="0" name="trip-price" id="trip-price">
-
+                        
                         <label for="trip-name"><bdi>مكان الرحلة :</bdi></label>
                         <input type="text" value="" name="trip-name" id="trip-name">
-
-                        <label for="tripimg" class="img-btn">رفع صورة للرحلة
-                        <input type="file" value="" name="tripimg" id="tripimg" accept="image/*">
-                        </label>
+                        
                     </div>
                     
                     <div id="gradu-choosen">
-                        <label for="gfree-price"><bdi>سعر تذكرة التخرج Free :</bdi></label>
-                        <input type="number" min="0" value="0" name="gfree-price" id="gfree-price">
-
+                        
+                        
                         <label for="gextra-price"><bdi>سعر تذكرة التخرج Extra :</bdi></label>
                         <input type="number" min="0" value="0" name="gextra-price" id="gextra-price">
                         
-                        <label for="gradeimg" class="img-btn">رفع صورة للتخرج
-                            <input type="file" name="gradeimg" id="gradeimg" accept="image/*">
+                       
                         </label>
                     </div>
                     <br>
+                    <label for="tripimg" class="img-btn">رفع صورة 
+                        <input type="file" name="tripimg" id="tripimg" accept="image/jpg " >
+                    </label>
+                    <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
+                    <input type="number" min="0" value="0" name="trip-price" id="trip-price">
                     <label for="vod-phone"><bdi>إضافة رقم فودافون كاش :</bdi></label>
                     <input type="number" size="11" value="" title="Enter Vodafone Cash Number" pattern="^010\d{8}$" name="vod-phone" id="vod-phone">
 
