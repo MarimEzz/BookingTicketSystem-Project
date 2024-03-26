@@ -71,27 +71,46 @@ document.getElementById("formcontrol").addEventListener("submit",function(e)
   const formData = new FormData(e.target);
   var ticket_price = formData.get("trip-price");
   const location = formData.get("trip-name");
-  const image = formData.get("trip-img");
+
+  const image = document.getElementById("tripimg").files[0];
+
+
   console.log(image);
-  if (ticket_price == "") {
-    ticket_price = formData.get("gfree-price");
-  }
   const extra_price = formData.get("gextra-price");
-  const gradeimg = formData.get("grade-img");
   const vod__cash = formData.get("vod-phone");
   const etis__cash = formData.get("etis-phone");
   const category = formData.get("choose");
   const formcontroldata = new FormData(this);
   //action attribute value /submit
+  const boundary = `-------${Date.now().toString(16)}`;
   fetch("http://127.0.0.1:8000/api/event",{ //<<<<<<<<<<<<
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": `multipart/form-data; boundary=${boundary}`,
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category}),
-    
+    body: new Blob([
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="ticket_price"\r\n\r\n${ticket_price}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="location"\r\n\r\n${location}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="image"; filename="${image.name}"\r\n`,
+      `Content-Type: ${image.type}\r\n\r\n`,
+      image,
+      `\r\n--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="extra_price"\r\n\r\n${extra_price}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="vod__cash"\r\n\r\n${vod__cash}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="etis__cash"\r\n\r\n${etis__cash}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="category"\r\n\r\n${category}\r\n`,
+      `--${boundary}--\r\n`,
+    ].flat(),
+    ),
   }).then(response=>{
+    console.log(JSON.stringify({ ticket_price, location, image, extra_price, vod__cash, etis__cash, category}));
     if(!response.ok)
     {
       throw new Error("Network response was not ok")
@@ -103,6 +122,7 @@ document.getElementById("formcontrol").addEventListener("submit",function(e)
     console.error("there was a problem with form submission:",error);
   });
 });
+
 //////////////////////////////////////
 // document.getElementById("formcontrol").addEventListener("submit", async (e) => {
 //   e.preventDefault();

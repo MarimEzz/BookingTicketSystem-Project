@@ -122,17 +122,18 @@ document.getElementById("graduate").addEventListener("submit", async (e) => {
   
   const formData = new FormData(e.target);
   const free = formData.get("free");
-  const extra = formData.get("extra");
-  const totaalgradu = formData.get("total");
+  const number_of_tickets = formData.get("extra");
+  const bill_amount = formData.get("total");
 
   try {
   //action attribute value "EndPoint" >>>> /graduate form submission 
-      const response = await fetch("/////////", {
+      const response = await fetch("http://127.0.0.1:8000/api/userBill", {
           method: "POST",
           headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ free, extra, totaalgradu})
+          body: JSON.stringify({ free, number_of_tickets, bill_amount})
       });
 
       const data = await response.json();
