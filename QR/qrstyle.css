@@ -107,7 +107,7 @@ label::after, p::after
 }
 p
 {
-    margin: 0px 5px;
+    margin:8px -2px;
 }
 label.notreq::after {
     content: none;

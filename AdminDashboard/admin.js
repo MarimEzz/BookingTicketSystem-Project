@@ -63,12 +63,12 @@ graduRadio.addEventListener("change", function() {
         graduDiv.style.display = "flex";
     }
 });
-
-document.getElementById("formcontrol").addEventListener("submit",function(e)
-{
+//////////////////////////////////////
+document.getElementById("formcontrol").addEventListener("submit", async (e) => {
   
   e.preventDefault();
-  const formData = new FormData(e.target);
+
+      const data = await response.json();
   var ticket_price = formData.get("trip-price");
   const location = formData.get("trip-name");
 
@@ -126,56 +126,6 @@ document.getElementById("formcontrol").addEventListener("submit",function(e)
 });
 
 //////////////////////////////////////
-// document.getElementById("formcontrol").addEventListener("submit", async (e) => {
-//   e.preventDefault();
-  
-//   const formData = new FormData(e.target);
-//   var ticket_price = formData.get("trip-price");
-//   const location = formData.get("trip-name");
-//   const image = formData.get("trip-img");
-//   if (ticket_price == "") {
-//     ticket_price = formData.get("gfree-price");
-//   }
-//   const extra_price = formData.get("gextra-price");
-//   const gradeimg = formData.get("grade-img");
-//   const vod__cash = formData.get("vod-phone");
-//   const etis__cash = formData.get("etis-phone");
-//   const category = formData.get("choose");
-
-
-//   try {
-//   //action attribute value "EndPoint" >>>> /Admin Controls
-//       const response = await fetch("http://127.0.0.1:8000/api/event", {
-//           method: "POST",
-//           headers: {
-//               "Content-Type": "application/json",
-//               Authorization : `Bearer ${localStorage.getItem("token")}`
-//           },
-//           body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category})
-//       });
-//       console.log(response);
-//       const data = await response.json();
-
-//       if (response.ok)
-//       {
-//         const successmsg = document.getElementById("successmsg");
-//         successmsg.style.display = "block";      
-//       }
-//       else if (response.status === 401)
-//       { // if Admin Unauthorized access go to login
-//         window.location.href="../index.html";
-//       }
-//       else 
-//       {
-//         const errormsg = document.getElementById("errormsg");
-//         errormsg.style.display = "block";
-//         console.error("Submission failed:", data.message);
-//       }
-//   } 
-//   catch (error) {
-//       console.error("Error during submission:", error);
-//   }
-// });
 
 /////////////////////////////////////
 // Added Button To Download dataTrip on Excle File
@@ -248,7 +198,7 @@ travrequest.addEventListener("readystatechange", function(){
 
     travelsData =JSON.parse(travrequest.response);
     console.log(travelsData); //as Array
-    
+    document.getElementById("tdefault").style.display = "none";
     DisplayTravels(); //display data
   }
   else
@@ -302,6 +252,7 @@ gradrequest.addEventListener("readystatechange", function(){
 
     graduateData =JSON.parse(gradrequest.response); //<<<<<<<<<<<<<
     console.log(graduateData); //as Array
+    document.getElementById("gdefault").style.display = "none";
     DisplayGraduate(); //display data
   }
   else
