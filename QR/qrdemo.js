@@ -10,7 +10,7 @@ var total = document.getElementById("total");
 var pho_pattern = /^01[0-2,5]\d{8}$/;
 var msg_war = document.getElementById("msg-war");
 var msg = document.getElementById("msg");
-
+var freeGrad=document.getElementById("free");
 var tripData = []; //<<<<<<<<<<<<<<
 
 var gettrip =new XMLHttpRequest();
@@ -31,6 +31,20 @@ gettrip.addEventListener("readystatechange", function(){
       option.textContent = trip.location;
       tripSelect.appendChild(option);
       });
+  }
+});
+var gardData = []; //<<<<<<<<<<<<<<
+
+var getgrade =new XMLHttpRequest();
+//Here to put API GET for travels data
+getgrade.open("GET","http://127.0.0.1:8000/api/grad");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+getgrade.send();
+getgrade.addEventListener("readystatechange", function(){
+  if(getgrade.readyState == 4 && getgrade.status == 200)
+  {
+    gardData =JSON.parse(getgrade.response);
+    console.log(gardData); //as Array
+    freeGrad.value = gardData[gardData.length-1].free_guests;
   }
 });
 
