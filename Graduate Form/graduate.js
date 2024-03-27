@@ -14,6 +14,12 @@ const total = document.getElementById("total");
 var poptotal = document.getElementById("ft");
 const vodcash = document.getElementById("vod-cash");
 const etiscash = document.getElementById("etis-cash");
+const freenum = document.getElementById("free");
+const image = document.getElementById("imggraduateform");
+const path="http://127.0.0.1:8000/images/";
+
+
+var event_id=0;
 
 
 var graduData = [];
@@ -28,15 +34,17 @@ getgradu.addEventListener("readystatechange", function(){
     //graduData =JSON.parse(getgradu.response).category;  //category:[{,,,}]
     graduData =JSON.parse(getgradu.response); 
     console.log(graduData); //as Array
-      xprice.value = graduData[0].extra_price; //<<<<<<<
-      fprice.value = graduData[0].ticket_price; //<<<<<<<<
-      
+      xprice.value = graduData[graduData.length - 1].extra_price; //<<<<<<<
+      fprice.value = graduData[graduData.length - 1].ticket_price; //<<<<<<<<
+      freenum.value = graduData[graduData.length - 1].free_guests;
+      event_id=graduData[graduData.length -1].id ;
+      image.src = path+ graduData[graduData.length -1].image;
       // Initialize total with the value of fprice
       total.value = +fprice.value;
 
       // get Cash phone
-      vodcash.textContent = graduData[0].vod__cash; //<<<<<<<<<<<<<<
-      etiscash.textContent = graduData[0].etis__cash; //<<<<<<<<<<<<<
+      vodcash.textContent = graduData[graduData.length - 1].vod__cash; //<<<<<<<<<<<<<<
+      etiscash.textContent = graduData[graduData.length - 1].etis__cash; //<<<<<<<<<<<<<
 
       // Update total when inputx value changes
       inputx.addEventListener("change", dynamicExtra);
@@ -119,8 +127,8 @@ function popup()
 
 document.getElementById("graduate").addEventListener("submit", async (e) => {
   e.preventDefault();
-  
   const formData = new FormData(e.target);
+  
   const free = formData.get("free");
   const number_of_tickets = formData.get("extra");
   const bill_amount = formData.get("total");
@@ -133,7 +141,7 @@ document.getElementById("graduate").addEventListener("submit", async (e) => {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${localStorage.getItem("token")}`
           },
-          body: JSON.stringify({ free, number_of_tickets, bill_amount})
+          body: JSON.stringify({ free, number_of_tickets, bill_amount,event_id})
       });
 
       const data = await response.json();

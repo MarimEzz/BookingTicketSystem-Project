@@ -10,20 +10,41 @@ var total = document.getElementById("total");
 var pho_pattern = /^01[0-2,5]\d{8}$/;
 var msg_war = document.getElementById("msg-war");
 var msg = document.getElementById("msg");
+var freeGrad=document.getElementById("free");
+var tripData = []; //<<<<<<<<<<<<<<
 
-const gardData = []; //<<<<<<<<<<<<<<
+var gettrip =new XMLHttpRequest();
+//Here to put API GET for travels data
+gettrip.open("GET","http://127.0.0.1:8000/api/travel");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+gettrip.send();
+gettrip.addEventListener("readystatechange", function(){
+  if(gettrip.readyState == 4 && gettrip.status == 200)
+  {
+    //console.log(gettrip.response); //as string
+    //tripData =JSON.parse(gettrip.response).category;  //category:[{,,,}]
+
+    tripData =JSON.parse(gettrip.response);
+    console.log(tripData); //as Array
+      // Populate select options
+      tripData.forEach(trip => {  //<<<<<<<<<<<<<<<<
+      const option = document.createElement("option");
+      option.textContent = trip.location;
+      tripSelect.appendChild(option);
+      });
+  }
+});
+var gardData = []; //<<<<<<<<<<<<<<
 
 var getgrade =new XMLHttpRequest();
 //Here to put API GET for travels data
-getgrade.open("GET","http://127.0.0.1:8000/api/travel");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
+getgrade.open("GET","http://127.0.0.1:8000/api/grad");// <<<<<<<<<<<<<<<<<<<<<<<<<<<
 getgrade.send();
 getgrade.addEventListener("readystatechange", function(){
   if(getgrade.readyState == 4 && getgrade.status == 200)
   {
     gardData =JSON.parse(getgrade.response);
     console.log(gardData); //as Array
-    fprice.value = graduData[0].ticket_price; //<<<<<<<<
-document.getElementById("free").value =graduData[graduData.length-1].free;
+    freeGrad.value = gardData[gardData.length-1].free_guests;
   }
 });
 

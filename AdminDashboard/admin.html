@@ -67,7 +67,8 @@
                             <th>الرقم القومي</th>
                             <th>إسم الكلية</th>
                             <th>رقم الهاتف</th>
-                            <th><bdi>عدد التذاكر</bdi></th>
+                            <th><bdi>عدد التذاكر free</bdi></th>
+                            <th><bdi>عدد التذاكر extra</bdi></th>
                             <th><bdi> حالة الدفع</bdi></th>
                             <th>إجمالي السعر</th>
                             <th>Action</th>
@@ -104,7 +105,7 @@
                     <div id="trip-choosen">
                         
                         <label for="trip-name"><bdi>مكان الرحلة :</bdi></label>
-                        <input type="text" value="" name="trip-name" id="trip-name">
+                        <input type="text" value=" " name="trip-name" id="trip-name">
                         
                     </div>
                     
@@ -113,6 +114,8 @@
                         
                         <label for="gextra-price"><bdi>سعر تذكرة التخرج Extra :</bdi></label>
                         <input type="number" min="0" value="0" name="gextra-price" id="gextra-price">
+                        <label for="free_guests"><bdi>عدد الfree guests</bdi></label>
+                        <input type="number" min="0" value="" name="free_guests" id="free_guests">
                         
                        
                         </label>
@@ -121,7 +124,7 @@
                     <label for="tripimg" class="img-btn">رفع صورة 
                         <input type="file" name="tripimg" id="tripimg" accept="image/jpg " >
                     </label>
-                    <label for="trip-price"><bdi>سعر تذكرة الرحلة :</bdi></label>
+                    <label for="trip-price"><bdi>سعر التذكرة :</bdi></label>
                     <input type="number" min="0" value="0" name="trip-price" id="trip-price">
                     <label for="vod-phone"><bdi>إضافة رقم فودافون كاش :</bdi></label>
                     <input type="number" size="11" value="" title="Enter Vodafone Cash Number" pattern="^010\d{8}$" name="vod-phone" id="vod-phone">

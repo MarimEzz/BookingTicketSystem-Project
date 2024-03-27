@@ -63,12 +63,12 @@ graduRadio.addEventListener("change", function() {
         graduDiv.style.display = "flex";
     }
 });
-//////////////////////////////////////
-document.getElementById("formcontrol").addEventListener("submit", async (e) => {
+
+document.getElementById("formcontrol").addEventListener("submit",function(e)
+{
   
   e.preventDefault();
-
-      const data = await response.json();
+  const formData = new FormData(e.target);
   var ticket_price = formData.get("trip-price");
   const location = formData.get("trip-name");
 
@@ -77,6 +77,7 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
 
   console.log(image);
   const extra_price = formData.get("gextra-price");
+  const free_guests = formData.get("free_guests");
   const vod__cash = formData.get("vod-phone");
   const etis__cash = formData.get("etis-phone");
   const category = formData.get("choose");
@@ -106,11 +107,12 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
       `Content-Disposition: form-data; name="etis__cash"\r\n\r\n${etis__cash}\r\n`,
       `--${boundary}\r\n`,
       `Content-Disposition: form-data; name="category"\r\n\r\n${category}\r\n`,
+      `--${boundary}\r\n`,
+      `Content-Disposition: form-data; name="free_guests"\r\n\r\n${free_guests}\r\n`,
       `--${boundary}--\r\n`,
     ].flat(),
     ),
   }).then(response=>{
-    console.log(JSON.stringify({ ticket_price, location, image, extra_price, vod__cash, etis__cash, category}));
     if(!response.ok)
     {
       throw new Error("Network response was not ok")
@@ -128,6 +130,56 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
 });
 
 //////////////////////////////////////
+// document.getElementById("formcontrol").addEventListener("submit", async (e) => {
+//   e.preventDefault();
+  
+//   const formData = new FormData(e.target);
+//   var ticket_price = formData.get("trip-price");
+//   const location = formData.get("trip-name");
+//   const image = formData.get("trip-img");
+//   if (ticket_price == "") {
+//     ticket_price = formData.get("gfree-price");
+//   }
+//   const extra_price = formData.get("gextra-price");
+//   const gradeimg = formData.get("grade-img");
+//   const vod__cash = formData.get("vod-phone");
+//   const etis__cash = formData.get("etis-phone");
+//   const category = formData.get("choose");
+
+
+//   try {
+//   //action attribute value "EndPoint" >>>> /Admin Controls
+//       const response = await fetch("http://127.0.0.1:8000/api/event", {
+//           method: "POST",
+//           headers: {
+//               "Content-Type": "application/json",
+//               Authorization : `Bearer ${localStorage.getItem("token")}`
+//           },
+//           body: JSON.stringify({ ticket_price, location, image, extra_price, gradeimg, vod__cash, etis__cash, category})
+//       });
+//       console.log(response);
+//       const data = await response.json();
+
+//       if (response.ok)
+//       {
+//         const successmsg = document.getElementById("successmsg");
+//         successmsg.style.display = "block";      
+//       }
+//       else if (response.status === 401)
+//       { // if Admin Unauthorized access go to login
+//         window.location.href="../index.html";
+//       }
+//       else 
+//       {
+//         const errormsg = document.getElementById("errormsg");
+//         errormsg.style.display = "block";
+//         console.error("Submission failed:", data.message);
+//       }
+//   } 
+//   catch (error) {
+//       console.error("Error during submission:", error);
+//   }
+// });
 
 /////////////////////////////////////
 // Added Button To Download dataTrip on Excle File
@@ -200,7 +252,7 @@ travrequest.addEventListener("readystatechange", function(){
 
     travelsData =JSON.parse(travrequest.response);
     console.log(travelsData); //as Array
-    document.getElementById("tdefault").style.display = "none";
+    
     DisplayTravels(); //display data
   }
   else
@@ -254,7 +306,6 @@ gradrequest.addEventListener("readystatechange", function(){
 
     graduateData =JSON.parse(gradrequest.response); //<<<<<<<<<<<<<
     console.log(graduateData); //as Array
-    document.getElementById("gdefault").style.display = "none";
     DisplayGraduate(); //display data
   }
   else
@@ -278,6 +329,7 @@ function DisplayGraduate()
         <td>${graduateData[i].user.nid}</td>
         <td>${graduateData[i].user.university}</td>
         <td>${graduateData[i].user.phone}</td>
+        <td>${graduateData[i].event.free_guests}</td>
         <td>${graduateData[i].number_of_tickets}</td>
         <td>${graduateData[i].bill_status}</td>
         <td>${graduateData[i].bill_amount}</td> 
