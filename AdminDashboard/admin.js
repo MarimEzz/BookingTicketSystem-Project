@@ -118,8 +118,12 @@ document.getElementById("formcontrol").addEventListener("submit", async (e) => {
     return response.json();
   }).then(data=>{
     console.log("form submitted successfully:",data);
+    document.getElementById("successmsg").style.display = "flex";
+
   }).catch(error=>{
     console.error("there was a problem with form submission:",error);
+    document.getElementById("errormsg").style.display = "flex";
+
   });
 });
 
