@@ -40,9 +40,57 @@ buttons.forEach(button=> {
 
 //////////////////////////////////
 // delete row buton on each form (trip - graduate)
-function deleteRow(index) {
-  travelsData.splice(index, 1);
-  DisplayTravels();
+async function deleteRowTrip(index) {
+  const itemIdTrip = travelsData[index].id;
+  try {
+    const response = await fetch(`/travels/${itemIdTrip}`, { //<<<<<<<<<<<<<<<<<<<
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    
+    if (response.ok)
+    {
+      travelsData.splice(index, 1);
+      DisplayTravels();
+    }
+    else
+    {
+      console.error("Failed to delete item:", response.statusText);
+    }
+  } 
+  catch (error)
+  {
+    console.error("Error deleting item:", error);
+  }
+}
+
+
+async function deleteRowgrad(index) {
+  const itemIdGrad = graduateData[index].id;
+  try {
+    const response = await fetch(`/graduats/${itemIdGrad}`, { //<<<<<<<<<<<<<<<<<<<
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    
+    if (response.ok)
+    {
+      graduateData.splice(index, 1);
+      DisplayGraduate();
+    }
+    else
+    {
+      console.error("Failed to delete item:", response.statusText);
+    }
+  } 
+  catch (error)
+  {
+    console.error("Error deleting item:", error);
+  }
 }
 ///////////////////////////////////////
 var tripRadio = document.getElementById("trip");
@@ -279,7 +327,7 @@ function DisplayTravels()
         <td>${travelsData[i].user.phone}</td>
         <td>${travelsData[i].number_of_tickets}</td>
         <td>${travelsData[i].bill_amount}</td>
-        <td><button class="del-trip-btn" onclick="deleteRow(${i})">حذف</button></td>
+        <td><button class="del-trip-btn" onclick="deleteRowTrip(${i})">حذف</button></td>
       </tr> `
   }
   document.getElementById("displayTrip").innerHTML = box;
@@ -333,7 +381,7 @@ function DisplayGraduate()
         <td>${graduateData[i].number_of_tickets}</td>
         <td>${graduateData[i].bill_status}</td>
         <td>${graduateData[i].bill_amount}</td> 
-        <td><button class="del-graduate-btn">حذف</button></td>
+        <td><button class="del-graduate-btn" onclick="deleteRowgrad(${i})">حذف</button></td>
       </tr> `
   }
   document.getElementById("displayGraduate").innerHTML = box;
