@@ -1,22 +1,23 @@
 # Booking Ticket System
-
-نظام لحجز حفلات التخرج والرحلات الخاصه بالجامعات عن طريق QR Code🎓✨
+A system for booking graduation parties and university trips via QR Code🎓✨
 
 Click Video To View [>> VIDEO](https://vimeo.com/manage/videos/950791209)
 
 
-📍خصائص ومميزات:
-- مصمم انه يكون متجاوب مع كل الاجهزة.
-- Form Validation عشان نضمن إن البيانات اللي بتدخلها تكون صحيحة.
-- صفحة إنشاء حساب وتسجيل دخول تحفظ معلوماتك.
-- الصفحة الرئيسية متقسمه لجزئين جزء للحفلات والتاني للرحلات.
-- تسجيل بيانات الحفلات زي عدد المرافقين الإضافي.
-- تسجيل بيانات الرحلات زي الرحله وعدد التذاكر.
-- بعد تسجيل البيانات بتظهر رساله بالأرقام الي هتحول عليها المبلغ زي فودافون/إتصالات كاش.
-_______
+📍Characteristics and features:
 
-📍نيجي بقا لل Dashboard Control:
-- لوحة تحكم للأدمن يقدر يضيف رحلة و يحدد سعر التذاكر وتعديل الصوره لكل رحلة وبالنسبه للحفلات فيقدر يتحكم فعدد المرافقين المجاني ويحدد سعر المرافقين سواء المجاني او الإضافي.
-- تقدر تعدل ارقام التحويل سواء فودافون او اتصالات كاش.
-- تقدر تعرض كل البيانات المسجلة لكل حفلة او رحلة لوحدها، وكمان تقدر تطبعها لملف Excel.
-- صفحه لإنشاء وتحميل QR Code تقدر تدخل البيانات وهيعمل Generate عندك تقدر تحملها فشكل صورة.
+Designed to be responsive to all devices.
+Form Validation to ensure that the data you enter is correct.
+The account creation and login page saves your information.
+The home page is divided into two parts, one for parties and the other for trips.
+Recording party data, such as the number of additional attendants.
+Recording trip data, such as the trip and the number of tickets.
+After registering the data, a message will appear with the numbers to which the amount will be transferred, such as Vodafone/Etisalat Cash.
+_________________
+
+📍 Let's go to Dashboard Control:
+
+A control panel for the admin. He can add a trip, determine the price of tickets, and modify the photo for each trip. As for parties, he can control the number of free companions and determine the price of the companions, whether free or additional.
+You can modify the transfer numbers, whether Vodafone or Etisalat Cash.
+You can view all the recorded data for each party or trip individually, and you can also print it to an Excel file.
+A page to create and download a QR Code. You can enter the data and it will generate a Generate for you. You can download it in the form of an image.
